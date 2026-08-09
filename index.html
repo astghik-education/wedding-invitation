@@ -9,11 +9,12 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&family=Pinyon+Script&family=Marck+Script&family=Noto+Serif+Armenian:wght@300;400;500;600&family=Noto+Sans+Armenian:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 /* ============================================================
    ANNA & ARMAN · 28.09.2026 — luxury editorial invitation
+   Trilingual: EN / HY / RU · single-file, sendable as attachment
    Palette: Ivory / Champagne / Sage / Taupe / Deep Brown
 ============================================================ */
 :root{
@@ -28,10 +29,10 @@
   --gold:#C6A15B; /* whisper-only accent */
   --hair:rgba(41,38,34,.16);
   --hair-light:rgba(248,244,237,.18);
-  --disp:'Italiana', serif;
-  --serif:'Cormorant Garamond', serif;
-  --sans:'Jost', sans-serif;
-  --script:'Pinyon Script', cursive;
+  --disp:'Italiana','Cormorant Garamond','Noto Serif Armenian',serif;
+  --serif:'Cormorant Garamond','Noto Serif Armenian',serif;
+  --sans:'Jost','Noto Sans Armenian',sans-serif;
+  --script:'Pinyon Script','Marck Script','Noto Serif Armenian',cursive;
   --ease:cubic-bezier(.19,1,.22,1);
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -67,6 +68,7 @@ h2.display{
   font-size:clamp(2.6rem,6.4vw,5rem);letter-spacing:.02em;
 }
 .section{padding:clamp(90px,12vw,170px) clamp(22px,6vw,96px)}
+.opt{text-transform:none;letter-spacing:.1em}
 
 /* hairline that draws itself */
 .draw{height:1px;background:var(--champagne-soft);transform:scaleX(0);transform-origin:left;transition:transform 1.6s var(--ease)}
@@ -81,7 +83,7 @@ h2.display{
 .lm>span{display:block;transform:translateY(115%);transition:transform 1.25s var(--ease);transition-delay:var(--d,0s)}
 .in .lm>span,.lm.in>span{transform:none}
 
-/* ornament divider  ─ ✦ ─ */
+/* ornament divider  ─ ✦  */
 .orn{display:flex;align-items:center;justify-content:center;gap:18px;margin:0 auto;padding:clamp(30px,5vw,60px) 22px}
 .orn i{height:1px;width:min(150px,22vw);background:var(--champagne-soft);transform:scaleX(0);transition:transform 1.6s var(--ease)}
 .orn i:first-child{transform-origin:right}
@@ -115,6 +117,14 @@ h2.display{
 /* scroll progress hairline */
 #prog{position:fixed;top:0;left:0;height:2px;width:100%;z-index:70;background:linear-gradient(90deg,var(--champagne),var(--gold));transform:scaleX(0);transform-origin:left}
 
+/* ---------- language switcher ---------- */
+.lang{display:flex;gap:14px;align-items:center}
+.lang button{font-family:var(--sans);font-size:.6rem;letter-spacing:.26em;color:var(--taupe);padding:4px 1px;border-bottom:1px solid transparent;transition:color .35s ease,border-color .35s ease}
+.lang button.on{color:var(--gold);border-color:var(--gold)}
+.lang-ld{position:absolute;top:22px;right:26px;z-index:5}
+.lang-ld button{color:rgba(248,244,237,.45)}
+.lang-ld button.on{color:var(--champagne);border-color:var(--champagne)}
+
 /* ============================================================
    1 · OPENING SCREEN — cinematic dark
 ============================================================ */
@@ -127,7 +137,7 @@ h2.display{
 #loader.open .ld-inner{opacity:0;transform:translateY(-24px)}
 .ld-date{font-family:var(--sans);font-size:.66rem;letter-spacing:.5em;color:var(--champagne);opacity:0;transition:opacity 1.4s ease .15s}
 .ld-star{color:var(--gold);font-size:.8rem;letter-spacing:.4em;margin:18px 0 6px;opacity:0;transition:opacity 1.6s ease .4s}
-.ld-name{font-family:var(--disp);font-weight:400;font-size:clamp(1.9rem,7vw,4.4rem);color:var(--ivory);
+.ld-name{font-family:var(--disp);font-weight:400;font-size:clamp(1.7rem,6.4vw,4.4rem);color:var(--ivory);
   letter-spacing:.55em;text-indent:.55em;transition:letter-spacing 2.6s var(--ease),text-indent 2.6s var(--ease);white-space:nowrap}
 #loader.ready .ld-name{letter-spacing:.2em;text-indent:.2em}
 .ld-name span{display:inline-block;opacity:0;transform:translateY(.85em);filter:blur(7px);
@@ -155,7 +165,7 @@ h2.display{
 /* ============================================================
    HEADER
 ============================================================ */
-header{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;
+header{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:16px;
   padding:18px clamp(20px,4vw,48px);opacity:0;pointer-events:none;transform:translateY(-10px);
   transition:opacity 1s ease .8s,transform 1s var(--ease) .8s,background .5s ease,box-shadow .5s ease}
 body.opened header{opacity:1;pointer-events:auto;transform:none}
@@ -173,7 +183,7 @@ header.scrolled{background:rgba(248,244,237,.94);box-shadow:0 1px 0 var(--hair)}
 #menu{position:fixed;inset:0;background:var(--ivory);z-index:90;display:flex;flex-direction:column;justify-content:center;padding:0 clamp(28px,8vw,90px);
   transform:translateY(-102%);transition:transform .8s var(--ease)}
 #menu.on{transform:none}
-#menu a{font-family:var(--disp);font-size:clamp(2.6rem,10vw,5.4rem);line-height:1.35;display:flex;align-items:baseline;gap:20px;opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .8s var(--ease),color .4s ease}
+#menu a{font-family:var(--disp);font-size:clamp(2.4rem,9vw,5.4rem);line-height:1.35;display:flex;align-items:baseline;gap:20px;opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .8s var(--ease),color .4s ease}
 #menu.on a{opacity:1;transform:none}
 #menu a:hover{color:var(--taupe)}
 #menu a small{font-family:var(--sans);font-size:.62rem;letter-spacing:.4em;color:var(--champagne)}
@@ -189,7 +199,7 @@ header.scrolled{background:rgba(248,244,237,.94);box-shadow:0 1px 0 var(--hair)}
 #hero .ghost{position:absolute;left:-2vw;bottom:-6vw;font-family:var(--disp);font-size:42vw;line-height:1;color:rgba(169,154,140,.07);z-index:0;pointer-events:none;user-select:none}
 .hero-copy{display:flex;flex-direction:column;justify-content:center;padding:clamp(100px,14vh,150px) clamp(24px,5.5vw,90px) clamp(50px,8vh,90px);position:relative;z-index:1}
 .hero-copy .overline{margin-bottom:clamp(24px,4vh,44px)}
-.hero-names{font-family:var(--disp);font-weight:400;font-size:clamp(3.2rem,9.2vw,7.6rem);line-height:1.02;letter-spacing:.03em}
+.hero-names{font-family:var(--disp);font-weight:400;font-size:clamp(3rem,9.2vw,7.6rem);line-height:1.02;letter-spacing:.03em}
 .hero-names .amp{display:block;font-family:var(--script);font-size:.52em;color:var(--gold);line-height:.7;margin:.12em 0 .1em .05em;
   opacity:0;transform:scale(.7);transition:opacity 1.2s ease .75s,transform 1.2s var(--ease) .75s}
 body.opened .hero-names .amp{opacity:1;transform:none}
@@ -286,7 +296,7 @@ body.opened .hero-names .lm>span{transform:none}
    6 · DRESS CODE
 ============================================================ */
 #dress{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(40px,7vw,110px);align-items:center}
-.dress-big{font-family:var(--disp);line-height:1.06;font-size:clamp(2.8rem,7vw,5.6rem)}
+.dress-big{font-family:var(--disp);line-height:1.06;font-size:clamp(2.6rem,7vw,5.6rem)}
 .dress-big .thin{display:block;font-family:var(--sans);font-size:.68rem;letter-spacing:.5em;color:var(--taupe);margin-bottom:22px;text-transform:uppercase}
 .dress-big .slash{color:var(--gold);font-family:var(--script);font-size:.7em}
 .dress-body p{color:var(--ink-soft);max-width:48ch;margin-bottom:30px}
@@ -399,6 +409,7 @@ body.playing .eq i:nth-child(4){animation-delay:.1s}
   .tl-item .tl-note,.tl-item:nth-child(odd) .tl-note,.tl-item:nth-child(even) .tl-note{grid-column:2;text-align:left;grid-row:2;padding:10px 0 0}
   .choice{grid-template-columns:1fr}
   .hero-meta div{min-width:100%}
+  .lang-ld{top:16px;right:16px}
 }
 
 /* ---------- reduced motion ---------- */
@@ -418,14 +429,17 @@ body.playing .eq i:nth-child(4){animation-delay:.1s}
 
 <!-- ══════════ 1 · OPENING SCREEN ══════════ -->
 <div id="loader" role="dialog" aria-label="Wedding invitation opening">
+  <div class="lang lang-ld" role="group" aria-label="Language">
+    <button data-lang="en">EN</button><button data-lang="hy">ՀԱՅ</button><button data-lang="ru">РУ</button>
+  </div>
   <div class="ld-inner">
-    <p class="ld-date">28 · 09 · 2026 — YEREVAN</p>
+    <p class="ld-date" data-i18n="ldDate">28 · 09 · 2026 — YEREVAN</p>
     <p class="ld-star">✦ &nbsp;✦&nbsp; ✦</p>
     <h1 class="ld-name" id="ldName">ANNA &amp; ARMAN</h1>
-    <p class="ld-tag">the beginning of forever</p>
+    <p class="ld-tag" data-i18n="tag">the beginning of forever</p>
     <div class="ld-line"></div>
-    <button class="ld-open" id="openBtn">Open Invitation <span class="arr">↓</span></button>
-    <p class="ld-hint">BEST EXPERIENCED WITH SOUND ON</p>
+    <button class="ld-open" id="openBtn"><span data-i18n="openBtn">Open Invitation</span> <span class="arr">↓</span></button>
+    <p class="ld-hint" data-i18n="ldHint">BEST EXPERIENCED WITH SOUND ON</p>
   </div>
 </div>
 
@@ -433,20 +447,27 @@ body.playing .eq i:nth-child(4){animation-delay:.1s}
 <header id="hd">
   <a class="logo" href="#hero">A <b>&amp;</b> A</a>
   <nav class="nav-links" aria-label="Main">
-    <a href="#story">Story</a><a href="#day">The Day</a><a href="#venue">Venue</a><a href="#dress">Dress Code</a><a href="#rsvp">RSVP</a>
+    <a href="#story" data-i18n="navStory">Story</a>
+    <a href="#day" data-i18n="navDay">The Day</a>
+    <a href="#venue" data-i18n="navVenue">Venue</a>
+    <a href="#dress" data-i18n="navDress">Dress Code</a>
+    <a href="#rsvp" data-i18n="navRsvp">RSVP</a>
   </nav>
+  <div class="lang" role="group" aria-label="Language">
+    <button data-lang="en">EN</button><button data-lang="hy">ՀԱՅ</button><button data-lang="ru">РУ</button>
+  </div>
   <span class="hd-date">28 . 09 . 2026</span>
   <button class="burger" id="burger" aria-label="Open menu"><i></i><i></i></button>
 </header>
 
 <div id="menu" aria-hidden="true">
   <button id="menuClose" aria-label="Close menu">CLOSE ✕</button>
-  <a href="#story"><small>01</small>Our Story</a>
-  <a href="#day"><small>02</small>The Day</a>
-  <a href="#venue"><small>03</small>Venue</a>
-  <a href="#dress"><small>04</small>Dress Code</a>
-  <a href="#countdown"><small>05</small>Countdown</a>
-  <a href="#rsvp"><small>06</small>RSVP</a>
+  <a href="#story"><small>01</small><span data-i18n="navStory">Story</span></a>
+  <a href="#day"><small>02</small><span data-i18n="navDay">The Day</span></a>
+  <a href="#venue"><small>03</small><span data-i18n="navVenue">Venue</span></a>
+  <a href="#dress"><small>04</small><span data-i18n="navDress">Dress Code</span></a>
+  <a href="#countdown"><small>05</small><span data-i18n="navCount">Countdown</span></a>
+  <a href="#rsvp"><small>06</small><span data-i18n="navRsvp">RSVP</span></a>
 </div>
 
 <main>
@@ -454,25 +475,25 @@ body.playing .eq i:nth-child(4){animation-delay:.1s}
 <section id="hero" aria-label="Anna and Arman wedding invitation">
   <div class="hero-copy">
     <span class="ghost" data-plx="0.04" aria-hidden="true">&amp;</span>
-    <p class="overline h-rv" style="--d:.5s">Together with their families</p>
-    <h1 class="hero-names" aria-label="Anna and Arman">
-      <span class="lm"><span style="--d:.62s">ANNA</span></span>
+    <p class="overline h-rv" style="--d:.5s" data-i18n="heroOver">Together with their families</p>
+    <h1 class="hero-names">
+      <span class="lm"><span style="--d:.62s" data-i18n="name1">ANNA</span></span>
       <span class="amp">&amp;</span>
-      <span class="lm"><span style="--d:.82s">ARMAN</span></span>
+      <span class="lm"><span style="--d:.82s" data-i18n="name2">ARMAN</span></span>
     </h1>
-    <p class="hero-tag h-rv" style="--d:1.05s">the beginning of forever</p>
-    <p class="hero-txt h-rv" style="--d:1.2s">With joyful hearts and grateful families, we invite you to stand beside us on the day our forever begins.</p>
+    <p class="hero-tag h-rv" style="--d:1.05s" data-i18n="tag">the beginning of forever</p>
+    <p class="hero-txt h-rv" style="--d:1.2s" data-i18n="heroTxt">With joyful hearts and grateful families, we invite you to stand beside us on the day our forever begins.</p>
     <div class="hero-meta h-rv" style="--d:1.35s">
-      <div><p class="k">The Ceremony</p><p class="v">12:00 · Holy Etchmiadzin</p></div>
-      <div><p class="k">The Celebration</p><p class="v">17:00 · Dvin, Yerevan</p></div>
+      <div><p class="k" data-i18n="metaK1">The Ceremony</p><p class="v" data-i18n="metaV1">12:00 · Holy Etchmiadzin</p></div>
+      <div><p class="k" data-i18n="metaK2">The Celebration</p><p class="v" data-i18n="metaV2">17:00 · Dvin, Yerevan</p></div>
     </div>
-    <p class="hero-scroll h-rv" style="--d:1.55s"><i></i> SCROLL</p>
+    <p class="hero-scroll h-rv" style="--d:1.55s"><i></i> <span data-i18n="scroll">SCROLL</span></p>
   </div>
   <div class="hero-media">
     <div class="frame kb" data-plx="0.06">
-      <img src="https://picsum.photos/seed/wedding-editorial-couple/1100/1500" alt="Editorial wedding photograph of Anna and Arman" fetchpriority="high">
+      <img src="https://picsum.photos/seed/wedding-editorial-couple/1100/1500" alt="Anna & Arman" fetchpriority="high">
     </div>
-    <p class="date-badge">MONDAY <b>✦</b> 28 SEPTEMBER 2026</p>
+    <p class="date-badge" data-i18n-html="badge">MONDAY <b>✦</b> 28 SEPTEMBER 2026</p>
   </div>
 </section>
 
@@ -481,20 +502,20 @@ body.playing .eq i:nth-child(4){animation-delay:.1s}
 <section id="story" class="section">
   <figure class="story-media rv">
     <div class="frame kb"><span class="offset" aria-hidden="true"></span>
-      <img src="https://picsum.photos/seed/love-story-yerevan/900/1200" alt="Anna and Arman, a quiet moment" loading="lazy">
+      <img src="https://picsum.photos/seed/love-story-yerevan/900/1200" alt="Anna & Arman — 2019" loading="lazy">
     </div>
-    <figcaption><span>YEREVAN · 2019</span><span>№ 01</span></figcaption>
+    <figcaption><span data-i18n="storyCap">YEREVAN · 2019</span><span>№ 01</span></figcaption>
   </figure>
   <div class="story-body">
-    <p class="overline rv">01 · Our Story</p>
-    <h2 class="display rv" style="--d:.1s">Two names,<br>one beginning.</h2>
-    <p class="rv" style="--d:.18s">It began with a single glance across a crowded gallery in Yerevan — and a conversation that lasted until the lights came on. Seven years later, that conversation has never stopped.</p>
-    <p class="rv" style="--d:.26s">From slow mornings on Abovyan Street to every quiet adventure since, we have been writing this day without knowing it — until, beneath the mountains of Dilijan, Arman asked the question, and Anna said yes before he could finish.</p>
-    <p class="story-quote rv" style="--d:.32s">“and so, the forever begins.”</p>
+    <p class="overline rv" data-i18n="storyOver">01 · Our Story</p>
+    <h2 class="display rv" style="--d:.1s" data-i18n-html="storyH2">Two names,<br>one beginning.</h2>
+    <p class="rv" style="--d:.18s" data-i18n="storyP1">It began with a single glance across a crowded gallery in Yerevan — and a conversation that lasted until the lights came on. Seven years later, that conversation has never stopped.</p>
+    <p class="rv" style="--d:.26s" data-i18n="storyP2">From slow mornings on Abovyan Street to every quiet adventure since, we have been writing this day without knowing it — until, beneath the mountains of Dilijan, Arman asked the question, and Anna said yes before he could finish.</p>
+    <p class="story-quote rv" style="--d:.32s" data-i18n="storyQuote">“and so, the forever begins.”</p>
     <div class="story-line rv" style="--d:.4s">
-      <div><p class="y">2019</p><p class="t">The first hello</p></div>
-      <div><p class="y">2025</p><p class="t">The proposal</p></div>
-      <div><p class="y">2026</p><p class="t">Forever</p></div>
+      <div><p class="y">2019</p><p class="t" data-i18n="y1">The first hello</p></div>
+      <div><p class="y">2025</p><p class="t" data-i18n="y2">The proposal</p></div>
+      <div><p class="y">2026</p><p class="t" data-i18n="y3">Forever</p></div>
     </div>
   </div>
 </section>
@@ -502,24 +523,24 @@ body.playing .eq i:nth-child(4){animation-delay:.1s}
 <!-- ══════════ 4 · THE WEDDING DAY ══════════ -->
 <section id="day" class="section">
   <div class="day-head">
-    <p class="overline rv" style="justify-content:center">02 · The Wedding Day</p>
+    <p class="overline rv" style="justify-content:center" data-i18n="dayOver">02 · The Wedding Day</p>
     <p class="day-date rv" style="--d:.12s">28<em>.</em>09<em>.</em>2026</p>
-    <p class="day-sub rv" style="--d:.22s">Monday · Twenty-eighth of September · Two Thousand Twenty-Six</p>
+    <p class="day-sub rv" style="--d:.22s" data-i18n="daySub">Monday · Twenty-eighth of September · Two Thousand Twenty-Six</p>
   </div>
 
   <div class="tl">
     <div class="tl-item rv">
-      <div class="tl-card"><p class="tl-time">12:00</p><h3>Wedding Ceremony</h3><p class="place">Mother See of Holy Etchmiadzin · Vagharshapat</p></div>
+      <div class="tl-card"><p class="tl-time">12:00</p><h3 data-i18n="tl1h">Wedding Ceremony</h3><p class="place" data-i18n="tl1p">Mother See of Holy Etchmiadzin · Vagharshapat</p></div>
       <div class="tl-dot" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="13" r="5.4"/><circle cx="15" cy="13" r="5.4"/><path d="M12 4l1.8 2.4h-3.6L12 4z"/></svg></div>
-      <p class="tl-note">We say yes, surrounded by everyone we love. Please arrive fifteen minutes early.</p>
+      <p class="tl-note" data-i18n="tl1n">We say yes, surrounded by everyone we love. Please arrive fifteen minutes early.</p>
     </div>
     <div class="tl-item rv" style="--d:.15s">
-      <div class="tl-note">Dinner, toasts and dancing until the candles burn low. Bring your best steps.</p>
+      <p class="tl-note" data-i18n="tl2n">Dinner, toasts and dancing until the candles burn low. Bring your best steps.</p>
       <div class="tl-dot" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3h8l-1.2 7a3.2 3.2 0 0 1-5.6 0L8 3z"/><path d="M12 13.5V20M8.5 20h7"/></svg></div>
-      <div class="tl-card"><p class="tl-time">17:00</p><h3>Wedding Celebration</h3><p class="place">Dvin Restaurant · 1 Paronyan St, Yerevan</p></div>
+      <div class="tl-card"><p class="tl-time">17:00</p><h3 data-i18n="tl2h">Wedding Celebration</h3><p class="place" data-i18n="tl2p">Dvin Restaurant · 1 Paronyan St, Yerevan</p></div>
     </div>
   </div>
-  <p class="day-foot rv">✦ &nbsp;SHUTTLE FROM THE CEREMONY TO THE VENUE WILL BE PROVIDED&nbsp; <b>·</b>&nbsp; ԲԱՐԻ ԳԱԼՈՒՍՏ&nbsp; ✦</p>
+  <p class="day-foot rv" data-i18n-html="dayFoot">✦ &nbsp;SHUTTLE FROM THE CEREMONY TO THE VENUE WILL BE PROVIDED&nbsp; <b>·</b>&nbsp; WELCOME &nbsp;✦</p>
 </section>
 
 <!-- ══════════ 5 · VENUE ══════════ -->
@@ -527,18 +548,18 @@ body.playing .eq i:nth-child(4){animation-delay:.1s}
   <div class="venue-grid">
     <div class="venue-photo rv">
       <div class="frame kb" data-plx="0.05"><span class="offset" aria-hidden="true"></span>
-        <img src="https://picsum.photos/seed/dvin-restaurant-venue/1300/980" alt="Dvin Restaurant, Yerevan — the celebration venue" loading="lazy">
+        <img src="https://picsum.photos/seed/dvin-restaurant-venue/1300/980" alt="Dvin Restaurant, Yerevan" loading="lazy">
       </div>
     </div>
     <div class="venue-card">
-      <p class="overline rv">03 · The Venue</p>
-      <h2 class="display rv" style="--d:.1s">Dvin<br>Restaurant</h2>
-      <p class="addr rv" style="--d:.18s">1 Paronyan Street, Yerevan, Armenia</p>
-      <p class="blurb rv" style="--d:.26s">An evening of long tables, warm light and Armenian hospitality — our celebration unfolds beneath the high ceilings of one of Yerevan's most beloved halls.</p>
-      <a class="btn btn-solid rv" style="--d:.34s" href="https://www.google.com/maps/search/?api=1&query=Dvin+Restaurant+Yerevan" target="_blank" rel="noopener">View Location <span class="a">→</span></a>
+      <p class="overline rv" data-i18n="venueOver">03 · The Venue</p>
+      <h2 class="display rv" style="--d:.1s" data-i18n-html="venueH2">Dvin<br>Restaurant</h2>
+      <p class="addr rv" style="--d:.18s" data-i18n="venueAddr">1 Paronyan Street, Yerevan, Armenia</p>
+      <p class="blurb rv" style="--d:.26s" data-i18n="venueBlurb">An evening of long tables, warm light and Armenian hospitality — our celebration unfolds beneath the high ceilings of one of Yerevan's most beloved halls.</p>
+      <a class="btn btn-solid rv" style="--d:.34s" href="https://www.google.com/maps/search/?api=1&query=Dvin+Restaurant+Yerevan" target="_blank" rel="noopener"><span data-i18n="viewLoc">View Location</span> <span class="a">→</span></a>
       <div class="venue-mini rv" style="--d:.42s">
-        <div><p class="k">Ceremony Venue</p><p class="v">Mother See of Holy Etchmiadzin, Vagharshapat</p></div>
-        <a class="btn btn-line" href="https://www.google.com/maps/search/?api=1&query=Etchmiadzin+Cathedral" target="_blank" rel="noopener">Map <span class="a">→</span></a>
+        <div><p class="k" data-i18n="miniK">Ceremony Venue</p><p class="v" data-i18n="tl1p">Mother See of Holy Etchmiadzin · Vagharshapat</p></div>
+        <a class="btn btn-line" href="https://www.google.com/maps/search/?api=1&query=Etchmiadzin+Cathedral" target="_blank" rel="noopener"><span data-i18n="mapBtn">Map</span> <span class="a">→</span></a>
       </div>
     </div>
   </div>
@@ -547,7 +568,7 @@ body.playing .eq i:nth-child(4){animation-delay:.1s}
       <iframe title="Map — Dvin Restaurant, Yerevan" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
         src="https://www.google.com/maps?q=Dvin%20Restaurant%2C%20Yerevan&z=15&output=embed"></iframe>
     </div>
-    <div class="map-cap"><span>40.1776° N · 44.4961° E</span><span>Dvin · Yerevan</span></div>
+    <div class="map-cap"><span>40.1776° N · 44.4961° E</span><span data-i18n="mapCapR">Dvin · Yerevan</span></div>
   </div>
 </section>
 
@@ -555,67 +576,67 @@ body.playing .eq i:nth-child(4){animation-delay:.1s}
 <div class="orn rv"><i></i><b>✦</b><i></i></div>
 <section id="dress" class="section">
   <div>
-    <p class="overline rv">04 · Dress Code</p>
+    <p class="overline rv" data-i18n="dressOver">04 · Dress Code</p>
     <h2 class="dress-big rv" style="--d:.1s;margin-top:22px">
-      <span class="thin">We kindly request</span>
-      BLACK TIE <span class="slash">/</span><br>ELEGANT
+      <span class="thin" data-i18n="dressThin">We kindly request</span>
+      <span data-i18n="dressA">BLACK TIE</span> <span class="slash">/</span><br><span data-i18n="dressB">ELEGANT</span>
     </h2>
   </div>
   <div class="dress-body">
-    <p class="rv" style="--d:.15s">We would love to see you in your most elegant evening attire. To keep our photographs harmonious, we gently suggest the tones of our palette — and kindly ask you to leave bright pink and heavy gold at home.</p>
+    <p class="rv" style="--d:.15s" data-i18n="dressP">We would love to see you in your most elegant evening attire. To keep our photographs harmonious, we gently suggest the tones of our palette — and kindly ask you to leave bright pink and heavy gold at home.</p>
     <div class="swatches rv" style="--d:.25s">
-      <div class="sw"><i style="background:#F8F4ED"></i><span>Ivory</span></div>
-      <div class="sw"><i style="background:#D8C6A8"></i><span>Champagne</span></div>
-      <div class="sw"><i style="background:#A7AD9A"></i><span>Sage</span></div>
-      <div class="sw"><i style="background:#A99A8C"></i><span>Taupe</span></div>
-      <div class="sw"><i style="background:#292622"></i><span>Deep Brown</span></div>
+      <div class="sw"><i style="background:#F8F4ED"></i><span data-i18n="sw1">Ivory</span></div>
+      <div class="sw"><i style="background:#D8C6A8"></i><span data-i18n="sw2">Champagne</span></div>
+      <div class="sw"><i style="background:#A7AD9A"></i><span data-i18n="sw3">Sage</span></div>
+      <div class="sw"><i style="background:#A99A8C"></i><span data-i18n="sw4">Taupe</span></div>
+      <div class="sw"><i style="background:#292622"></i><span data-i18n="sw5">Deep Brown</span></div>
     </div>
-    <p class="dress-note rv" style="--d:.34s"><b>✦</b> A whisper of gold, however, is always welcome.</p>
+    <p class="dress-note rv" style="--d:.34s"><b>✦</b> <span data-i18n="dressNote">A whisper of gold, however, is always welcome.</span></p>
   </div>
 </section>
 
 <!-- ══════════ 7 · COUNTDOWN ══════════ -->
 <section id="countdown" class="section">
-  <p class="script rv">counting down to forever</p>
+  <p class="script rv" data-i18n="cdScript">counting down to forever</p>
   <div class="cd rv" style="--d:.12s" role="timer" aria-label="Countdown to the wedding">
-    <div class="cd-unit"><span class="n" id="cdD">--</span><span class="l">Days</span></div><span class="cd-sep">·</span>
-    <div class="cd-unit"><span class="n" id="cdH">--</span><span class="l">Hours</span></div><span class="cd-sep">·</span>
-    <div class="cd-unit"><span class="n" id="cdM">--</span><span class="l">Minutes</span></div><span class="cd-sep">·</span>
-    <div class="cd-unit"><span class="n" id="cdS">--</span><span class="l">Seconds</span></div>
+    <div class="cd-unit"><span class="n" id="cdD">--</span><span class="l" data-i18n="cdL1">Days</span></div><span class="cd-sep">·</span>
+    <div class="cd-unit"><span class="n" id="cdH">--</span><span class="l" data-i18n="cdL2">Hours</span></div><span class="cd-sep">·</span>
+    <div class="cd-unit"><span class="n" id="cdM">--</span><span class="l" data-i18n="cdL3">Minutes</span></div><span class="cd-sep">·</span>
+    <div class="cd-unit"><span class="n" id="cdS">--</span><span class="l" data-i18n="cdL4">Seconds</span></div>
   </div>
-  <p class="cd-date rv" style="--d:.2s">28 SEPTEMBER 2026 <b>✦</b> 12:00 <b>✦</b> ECHMIADZIN</p>
+  <p class="cd-date rv" style="--d:.2s" data-i18n-html="cdDate">28 SEPTEMBER 2026 <b>✦</b> 12:00 <b>✦</b> ETCHMIADZIN</p>
 </section>
 
 <!-- ══════════ 8 · RSVP ══════════ -->
 <section id="rsvp" class="section">
   <div class="rsvp-left">
-    <p class="overline rv">05 · RSVP</p>
-    <h2 class="display rv" style="--d:.1s">Will you celebrate<br>with us?</h2>
-    <p class="rv" style="--d:.18s">Your presence is the greatest gift we could ask for. Please let us know if you can join us for the ceremony and the celebration.</p>
-    <span class="script rv" style="--d:.26s">your presence is the greatest gift</span>
-    <p class="rsvp-deadline rv" style="--d:.32s">Kindly respond before &nbsp;<b>01 · 09 · 2026</b></p>
+    <p class="overline rv" data-i18n="rsvpOver">05 · RSVP</p>
+    <h2 class="display rv" style="--d:.1s" data-i18n-html="rsvpH2">Will you celebrate<br>with us?</h2>
+    <p class="rv" style="--d:.18s" data-i18n="rsvpP">Your presence is the greatest gift we could ask for. Please let us know if you can join us for the ceremony and the celebration.</p>
+    <span class="script rv" style="--d:.26s" data-i18n="rsvpScript">your presence is the greatest gift</span>
+    <p class="rsvp-deadline rv" style="--d:.32s" data-i18n-html="rsvpDeadline">Kindly respond before &nbsp;<b>01 · 09 · 2026</b></p>
   </div>
   <div class="rsvp-card rv" style="--d:.15s">
     <form id="rsvpForm" novalidate>
       <div class="field">
-        <label for="fName">Full Name</label>
-        <input type="text" id="fName" name="name" autocomplete="name" placeholder="Your name &amp; surname" required>
+        <label for="fName" data-i18n="lblName">Full Name</label>
+        <input type="text" id="fName" name="name" autocomplete="name" data-i18n-ph="phName" placeholder="Your name &amp; surname" required>
       </div>
       <div class="field">
-        <label for="fMail">Email or Phone</label>
-        <input type="text" id="fMail" name="contact" autocomplete="email" placeholder="how can we reach you">
+        <label for="fMail" data-i18n="lblContact">Email or Phone</label>
+        <input type="text" id="fMail" name="contact" autocomplete="email" data-i18n-ph="phContact" placeholder="how can we reach you">
       </div>
       <div class="field">
-        <label id="attLbl">Attendance</label>
+        <label id="attLbl" data-i18n="lblAtt">Attendance</label>
         <div class="choice" role="radiogroup" aria-labelledby="attLbl">
           <input type="radio" name="attend" id="aYes" value="yes" required>
-          <label for="aYes">Yes, I'll be there 🤍</label>
+          <label for="aYes" data-i18n="yesLbl">Yes, I'll be there 🤍</label>
           <input type="radio" name="attend" id="aNo" value="no">
-          <label for="aNo">Regretfully, I can't</label>
+          <label for="aNo" data-i18n="noLbl">Regretfully, I can't</label>
         </div>
       </div>
       <div class="field">
-        <label id="gLbl">Number of Guests</label>
+        <label id="gLbl" data-i18n="lblGuests">Number of Guests</label>
         <div class="guests" role="radiogroup" aria-labelledby="gLbl">
           <input type="radio" name="guests" id="g1" value="1" checked><label for="g1">1</label>
           <input type="radio" name="guests" id="g2" value="2"><label for="g2">2</label>
@@ -624,11 +645,11 @@ body.playing .eq i:nth-child(4){animation-delay:.1s}
         </div>
       </div>
       <div class="field">
-        <label for="fSong">A song you'd like to dance to <span style="text-transform:none;letter-spacing:.1em">(optional)</span></label>
-        <textarea id="fSong" name="song" rows="2" placeholder="we'll tell the band…"></textarea>
+        <label for="fSong"><span data-i18n="songLbl">A song you'd like to dance to</span> <span class="opt" data-i18n="optLbl">(optional)</span></label>
+        <textarea id="fSong" name="song" rows="2" data-i18n-ph="phSong" placeholder="we'll tell the band…"></textarea>
       </div>
-      <button type="submit" class="btn btn-solid rsvp-submit">Send My RSVP <span class="a">→</span></button>
-      <p class="form-err" id="formErr">PLEASE ADD YOUR NAME AND CHOOSE AN OPTION 🤍</p>
+      <button type="submit" class="btn btn-solid rsvp-submit"><span data-i18n="submit">Send My RSVP</span> <span class="a">→</span></button>
+      <p class="form-err" id="formErr" data-i18n="formErr">PLEASE ADD YOUR NAME AND CHOOSE AN OPTION 🤍</p>
     </form>
   </div>
 </section>
@@ -636,14 +657,14 @@ body.playing .eq i:nth-child(4){animation-delay:.1s}
 <!-- ══════════ 9 · FINALE ══════════ -->
 <section id="finale">
   <div class="bg" data-plx="0.08">
-    <img src="https://picsum.photos/seed/couple-finale-portrait/1600/1100" alt="Anna and Arman" loading="lazy">
+    <img src="https://picsum.photos/seed/couple-finale-portrait/1600/1100" alt="Anna & Arman" loading="lazy">
   </div>
   <div class="fin-inner">
-    <p class="script rv">with all our love,</p>
-    <h2 class="rv" style="--d:.12s">We can't wait to celebrate this beautiful beginning with you.</h2>
+    <p class="script rv" data-i18n="finScript">with all our love,</p>
+    <h2 class="rv" style="--d:.12s" data-i18n="finH2">We can't wait to celebrate this beautiful beginning with you.</h2>
     <p class="fin-names rv" style="--d:.24s">ANNA &amp; ARMAN</p>
-    <p class="fin-date rv" style="--d:.36s">28 · 09 · 2026 &nbsp;✦&nbsp; YEREVAN</p>
-    <p class="fin-tag rv" style="--d:.46s"><span>#AnnaAndArman</span><b>✦</b><span>The beginning of forever</span><b>✦</b><span>Made with love</span></p>
+    <p class="fin-date rv" style="--d:.36s" data-i18n="finDate">28 · 09 · 2026 &nbsp;✦&nbsp; YEREVAN</p>
+    <p class="fin-tag rv" style="--d:.46s"><span>#AnnaAndArman</span><b>✦</b><span data-i18n="tag">the beginning of forever</span><b>✦</b><span data-i18n="finTag3">Made with love</span></p>
   </div>
 </section>
 </main>
@@ -660,17 +681,205 @@ const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $  = s => document.querySelector(s);
 const $$ = s => document.querySelectorAll(s);
 
+/* ═══════════ I18N — EN / HY / RU ═══════════ */
+const I18N = {
+en:{
+  title:"Anna & Arman — 28.09.2026 · The Beginning of Forever",
+  ldDate:"28 · 09 · 2026 — YEREVAN", ldName:"ANNA & ARMAN",
+  tag:"the beginning of forever", openBtn:"Open Invitation",
+  ldHint:"BEST EXPERIENCED WITH SOUND ON",
+  navStory:"Story", navDay:"The Day", navVenue:"Venue", navDress:"Dress Code", navRsvp:"RSVP", navCount:"Countdown",
+  heroOver:"Together with their families", name1:"ANNA", name2:"ARMAN",
+  heroTxt:"With joyful hearts and grateful families, we invite you to stand beside us on the day our forever begins.",
+  metaK1:"The Ceremony", metaV1:"12:00 · Holy Etchmiadzin",
+  metaK2:"The Celebration", metaV2:"17:00 · Dvin, Yerevan",
+  scroll:"SCROLL", badge:"MONDAY <b>✦</b> 28 SEPTEMBER 2026",
+  storyCap:"YEREVAN · 2019", storyOver:"01 · Our Story",
+  storyH2:"Two names,<br>one beginning.",
+  storyP1:"It began with a single glance across a crowded gallery in Yerevan — and a conversation that lasted until the lights came on. Seven years later, that conversation has never stopped.",
+  storyP2:"From slow mornings on Abovyan Street to every quiet adventure since, we have been writing this day without knowing it — until, beneath the mountains of Dilijan, Arman asked the question, and Anna said yes before he could finish.",
+  storyQuote:"“and so, the forever begins.”",
+  y1:"The first hello", y2:"The proposal", y3:"Forever",
+  dayOver:"02 · The Wedding Day",
+  daySub:"Monday · Twenty-eighth of September · Two Thousand Twenty-Six",
+  tl1h:"Wedding Ceremony", tl1p:"Mother See of Holy Etchmiadzin · Vagharshapat",
+  tl1n:"We say yes, surrounded by everyone we love. Please arrive fifteen minutes early.",
+  tl2h:"Wedding Celebration", tl2p:"Dvin Restaurant · 1 Paronyan St, Yerevan",
+  tl2n:"Dinner, toasts and dancing until the candles burn low. Bring your best steps.",
+  dayFoot:"✦ &nbsp;SHUTTLE FROM THE CEREMONY TO THE VENUE WILL BE PROVIDED&nbsp; <b>·</b>&nbsp; WELCOME &nbsp;✦",
+  venueOver:"03 · The Venue", venueH2:"Dvin<br>Restaurant",
+  venueAddr:"1 Paronyan Street, Yerevan, Armenia",
+  venueBlurb:"An evening of long tables, warm light and Armenian hospitality — our celebration unfolds beneath the high ceilings of one of Yerevan's most beloved halls.",
+  viewLoc:"View Location", miniK:"Ceremony Venue", mapBtn:"Map", mapCapR:"Dvin · Yerevan",
+  dressOver:"04 · Dress Code", dressThin:"We kindly request", dressA:"BLACK TIE", dressB:"ELEGANT",
+  dressP:"We would love to see you in your most elegant evening attire. To keep our photographs harmonious, we gently suggest the tones of our palette — and kindly ask you to leave bright pink and heavy gold at home.",
+  sw1:"Ivory", sw2:"Champagne", sw3:"Sage", sw4:"Taupe", sw5:"Deep Brown",
+  dressNote:"A whisper of gold, however, is always welcome.",
+  cdScript:"counting down to forever",
+  cdL1:"Days", cdL2:"Hours", cdL3:"Minutes", cdL4:"Seconds",
+  cdDate:"28 SEPTEMBER 2026 <b>✦</b> 12:00 <b>✦</b> ETCHMIADZIN",
+  rsvpOver:"05 · RSVP", rsvpH2:"Will you celebrate<br>with us?",
+  rsvpP:"Your presence is the greatest gift we could ask for. Please let us know if you can join us for the ceremony and the celebration.",
+  rsvpScript:"your presence is the greatest gift",
+  rsvpDeadline:"Kindly respond before &nbsp;<b>01 · 09 · 2026</b>",
+  lblName:"Full Name", phName:"Your name & surname",
+  lblContact:"Email or Phone", phContact:"how can we reach you",
+  lblAtt:"Attendance", yesLbl:"Yes, I'll be there 🤍", noLbl:"Regretfully, I can't",
+  lblGuests:"Number of Guests",
+  songLbl:"A song you'd like to dance to", optLbl:"(optional)", phSong:"we'll tell the band…",
+  submit:"Send My RSVP", formErr:"PLEASE ADD YOUR NAME AND CHOOSE AN OPTION 🤍",
+  doneYes:"Thank you, {name}!", doneNo:"We will miss you, {name}.",
+  doneYesP:"Your seat at our table is saved — {n} guest(s). Counting down the days to 28.09.",
+  doneNoP:"Thank you for letting us know. You will be in our hearts on the day.",
+  again:"Send another response",
+  finScript:"with all our love,",
+  finH2:"We can't wait to celebrate this beautiful beginning with you.",
+  finDate:"28 · 09 · 2026 &nbsp;✦&nbsp; YEREVAN", finTag3:"Made with love"
+},
+hy:{
+  title:"Աննա և Արման — 28.09.2026 · Հավերժության սկիզբը",
+  ldDate:"28 · 09 · 2026 — ԵՐԵՎԱՆ", ldName:"ԱՆՆԱ & ԱՐՄԱՆ",
+  tag:"հավերժության սկիզբը", openBtn:"Բացել հրավերը",
+  ldHint:"ՄԻԱՑՐԵՔ ՁԱՅՆԸ՝ ԼԱՎԱԳՈՒՅՆ ԸՆԿԱԼՄԱՆ ՀԱՄԱՐ",
+  navStory:"Պատմությունը", navDay:"Օրը", navVenue:"Վայրը", navDress:"Հագուստի կոդ", navRsvp:"Պատասխան", navCount:"Հետհաշվարկ",
+  heroOver:"Իրենց ընտանիքների հետ միասին", name1:"ԱՆՆԱ", name2:"ԱՐՄԱՆ",
+  heroTxt:"Ուրախ սրտերով ու երախտապարտ ընտանիքներով՝ հրավիրում ենք ձեզ կանգնել մեր կողքին այն օրը, երբ սկսվում է մեր հավերժությունը։",
+  metaK1:"Արարողությունը", metaV1:"12:00 · Սուրբ Էջմիածին",
+  metaK2:"Տոնակատարությունը", metaV2:"17:00 · «Դվին», Երևան",
+  scroll:"ԹԵՐԹԵՔ", badge:"ԵԿՈՒՇԱԲԹԻ <b>✦</b> 28 ՍՊՏԵՄԲԵՐԻ 2026",
+  storyCap:"ԵՐԵՎԱՆ · 2019", storyOver:"01 · Մեր պատմությունը",
+  storyH2:"Երկու անուն,<br>մեկ սկիզբ։",
+  storyP1:"Ամեն ինչ սկսվեց մեկ հայացքից Երևանի մարդաշատ պատկերասրահներից մեկում — և խոսակցությունից, որ տևեց մինչև լույսերը մարեցին։ Յոթ տարի անց այդ խոսակցությունը դեռ չի լռել։",
+  storyP2:"Աբովյան փողոցի հանգիստ առավոտներից մինչև այսօրվա ամեն արկած՝ մենք գրում էինք այս օրը՝ առանց իմանալու դա, մինչև Դիլիջանի լեռների ներքո Արմանը հարց տվեց, և Աննան ասաց «այո»՝ դեռ նախքան նա կավարտեր նախադասությունը։",
+  storyQuote:"«և այսպես, հավերժությունը սկսվում է։»",
+  y1:"Առաջին բարևը", y2:"Առաջարկությունը", y3:"Հավերժություն",
+  dayOver:"02 · Հարսանյաց օրը",
+  daySub:"Երկուշաբթի · Սեպտեմբերի քսանութը · Երկու հազար քսանվեց",
+  tl1h:"Հարսանյաց արարողություն", tl1p:"Սուրբ Էջմիածնի Մայր Աթոռ · Վաղարշապատ",
+  tl1n:"Մենք ասում ենք «այո»՝ մեր սիրելիների շրջապատում։ Խնդրում ենք գալ 15 րոպե շուտ։",
+  tl2h:"Հարսանյաց տոնակատարություն", tl2p:"«Դվին» ռեստորան · Փարոնյան 1, Երևան",
+  tl2n:"Ընթրիք, կենացներ և պարեր մինչև մոմերը մարեն։ Բերեք ձեր լավագույն քայլերը։",
+  dayFoot:"✦ &nbsp;ԿՐԱՄԱԴՐՎ ՏՐԱՆՍՊՈՐՏ ԱՐԱՐՈՂՈՒԹՈՒՆԻՑ ԴԵՊԻ ՏՈՆԱԿԱՏԱՐՈՒԹՅԱՆ ՎԱՅՐ&nbsp; <b>·</b>&nbsp; ԲԱՐԻ ԳԱԼՈՒՍՏ &nbsp;✦",
+  venueOver:"03 · Վայրը", venueH2:"«Դվին»<br>ռեստորան",
+  venueAddr:"Փարոնյան 1, Երևան, Հայաստան",
+  venueBlurb:"Երկար սեղանների, ջերմ լույսի և հայկական հյուրընկալության մի երեկո — մեր տոնակատարությունը կծավալվի Երևանի ամենասիրված դահլիճներից մեկի բարձր առաստաղների ներքո։",
+  viewLoc:"Դիտել վայրը", miniK:"Արարողության վայրը", mapBtn:"Քարտեզ", mapCapR:"«Դվին» · Երևան",
+  dressOver:"04 · Հագուստի կոդ", dressThin:"Խնդրում ենք", dressA:"BLACK TIE", dressB:"ԷԼԵԳԱՆՏ",
+  dressP:"Մենք կցանկանայինք տեսնել ձեզ ձեր ամենաէլեգանտ երեկոյան զգեստներով։ Լուսանկարների ներդաշնակության համար նուրբ առաջարկում ենք մեր պալիտրայի երանգները — և խնդրում վառ վարդագույնն ու ծանր ոսկեգույնը տանը թողնել։",
+  sw1:"Փղոսկր", sw2:"Շամպայն", sw3:"Եղեսպակ", sw4:"Տաուպ", sw5:"Մուգ դարչնագույն",
+  dressNote:"Սակայն ոսկեգույնի թեթև շողը միշտ սպասված է։",
+  cdScript:"հաշվում ենք մինչև հավերժություն",
+  cdL1:"Օր", cdL2:"Ժամ", cdL3:"Րոպե", cdL4:"Վայրկյան",
+  cdDate:"28 ՍԵՏԵԲԵՐԻ 2026 <b>✦</b> 12:00 <b>✦</b> ԷՄԻԱԻՆ",
+  rsvpOver:"05 · Պատասխան", rsvpH2:"Կտոնե՞ք<br>մեզ հետ։",
+  rsvpP:"Ձեր ներկայությունը ամենամեծ նվերն է, որ կարող ենք ցանկանալ։ Խնդրում ենք տեղեկացնել՝ կկարողանա՞ք միանալ մեզ արարողությանն ու տոնակատարությանը։",
+  rsvpScript:"ձեր ներկայությունը ամենամեծ նվերն է",
+  rsvpDeadline:"Խնդրում ենք պատասխանել մինչև &nbsp;<b>01 · 09 · 2026</b>",
+  lblName:"Անուն Ազգանուն", phName:"Ձեր անունը և ազգանունը",
+  lblContact:"Էլ. փոստ կամ հեռախոս", phContact:"ինչպես կապվել ձեզ հետ",
+  lblAtt:"Ներկայություն", yesLbl:"Այո, ես կլինեմ այնտեղ 🤍", noLbl:"Ցավոք, չեմ կարող",
+  lblGuests:"Հյուրերի քանակ",
+  songLbl:"Երգը, որի ներքո կցանկանաք պարել", optLbl:"(ըստ ցանկության)", phSong:"կասենք նվագախմբին…",
+  submit:"Ուղարկել պատասխանը", formErr:"ԽԴՐՈՒՄ ԵՆՔ ԼՐԱՑՆԵԼ ԱՆՈՒՆԸ ԵՎ ԸՆՏՐԵԼ ՏԱՐԲԵՐԱԿ 🤍",
+  doneYes:"Շնորհակալ ենք, {name}։", doneNo:"Կկարոտենք, {name}։",
+  doneYesP:"Ձեր տեղը մեր սեղանի շուրջ պահված է — {n} հյուր։ Հաշվում ենք օրերը մինչև 28.09։",
+  doneNoP:"Շնորհակալ ենք, որ տեղեկացրեցիք։ Այդ օրը դուք կլինեք մեր սրտերում։",
+  again:"Ուղարկել այլ պատասխան",
+  finScript:"մեր ամբողջ սիրով,",
+  finH2:"Անհամբեր սպասում ենք այս գեղեցիկ սկիզբը ձեզ հետ տոնելուն։",
+  finDate:"28 · 09 · 2026 &nbsp;✦&nbsp; ԵՐԵՎԱՆ", finTag3:"Պատրաստված է սիրով"
+},
+ru:{
+  title:"Анна и Арман — 28.09.2026 · Начало вечности",
+  ldDate:"28 · 09 · 2026 — ЕРЕВАН", ldName:"АННА & АРМАН",
+  tag:"начало вечности", openBtn:"Открыть приглашение",
+  ldHint:"ВКЛЮЧИТЕ ЗВУК ДЛЯ ЛУЧШЕГО ВПЕЧАТЛЕНИЯ",
+  navStory:"История", navDay:"День", navVenue:"Место", navDress:"Дресс-код", navRsvp:"Подтверждение", navCount:"Отсчёт",
+  heroOver:"Вместе со своими семьями", name1:"АННА", name2:"АРМАН",
+  heroTxt:"С радостными сердцами и благодарными семьями мы приглашаем вас встать рядом с нами в день, когда начинается наша вечность.",
+  metaK1:"Церемония", metaV1:"12:00 · Святой Эчмиадзин",
+  metaK2:"Празднование", metaV2:"17:00 · «Двин», Ереван",
+  scroll:"ЛИСТАЙТЕ", badge:"ПОНЕДЕЛЬНИК <b>✦</b> 28 СЕНТЯБРЯ 2026",
+  storyCap:"ЕРЕВАН · 2019", storyOver:"01 · Наша история",
+  storyH2:"Два имени,<br>одно начало.",
+  storyP1:"Всё началось с одного взгляда через переполненную галерею в Ереване — и разговора, который длился до тех пор, пока не погас свет. Семь лет спустя этот разговор всё ещё не закончился.",
+  storyP2:"От неспешных утренних прогулок по улице Абовян до каждого приключения с тех пор — мы писали этот день, не зная об этом, — пока под горами Дилижана Арман задал вопрос, и Анна сказала «да», прежде чем он договорил.",
+  storyQuote:"«и вот, вечность начинается.»",
+  y1:"Первое «привет»", y2:"Предложение", y3:"Вечность",
+  dayOver:"02 · День свадьбы",
+  daySub:"Понедельник · Двадцать восьмое сентября · Две тысячи двадцать шестой",
+  tl1h:"Свадебная церемония", tl1p:"Первопрестольный Святой Эчмиадзин · Вагаршапат",
+  tl1n:"Мы говорим «да» в окружении всех, кого любим. Пожалуйста, приходите за пятнадцать минут.",
+  tl2h:"Свадебное торжество", tl2p:"Ресторан «Двин» · ул. Пароняна 1, Ереван",
+  tl2n:"Ужин, тосты и танцы до последнего огонька свечи. Приносите свои лучшие шаги.",
+  dayFoot:"✦ &nbsp;ОТ ЦЕРЕМОНИИ ДО МЕСТА ТОРЖЕСТВА БУДЕТ ОРГАНИЗОВАН ТРАНСФЕР&nbsp; <b>·</b>&nbsp; ДОБРО ПОЖАЛОВАТЬ &nbsp;✦",
+  venueOver:"03 · Место", venueH2:"Ресторан<br>«Двин»",
+  venueAddr:"ул. Пароняна 1, Ереван, Армения",
+  venueBlurb:"Вечер длинных столов, тёплого света и армянского гостеприимства — наше торжество развернётся под высокими сводами одного из самых любимых залов Еревана.",
+  viewLoc:"Смотреть на карте", miniK:"Место церемонии", mapBtn:"Карта", mapCapR:"«Двин» · Ереван",
+  dressOver:"04 · Дресс-код", dressThin:"Мы будем рады", dressA:"BLACK TIE", dressB:"ЭЛЕГАНТ",
+  dressP:"Мы будем рады видеть вас в самых элегантных вечерних нарядах. Для гармонии фотографий мы мягко предлагаем оттенки нашей палитры — и просим оставить яркий розовый и тяжёлое золото дома.",
+  sw1:"Слоновая кость", sw2:"Шампань", sw3:"Шалфей", sw4:"Тауп", sw5:"Тёмно-коричневый",
+  dressNote:"Однако лёгкое прикосновение золота всегда приветствуется.",
+  cdScript:"отсчитываем до вечности",
+  cdL1:"Дней", cdL2:"Часов", cdL3:"Минут", cdL4:"Секунд",
+  cdDate:"28 СЕНТЯБРЯ 2026 <b>✦</b> 12:00 <b>✦</b> ЭЧМИАДЗИН",
+  rsvpOver:"05 · Подтверждение", rsvpH2:"Будете ли вы<br>праздновать с нами?",
+  rsvpP:"Ваше присутствие — величайший подарок, о котором мы можем мечтать. Пожалуйста, дайте знать, сможете ли вы присоединиться к нам на церемонии и торжестве.",
+  rsvpScript:"ваше присутствие — величайший дар",
+  rsvpDeadline:"Просим ответить до &nbsp;<b>01 · 09 · 2026</b>",
+  lblName:"Имя и фамилия", phName:"Ваши имя и фамилия",
+  lblContact:"Email или телефон", phContact:"как с вами связаться",
+  lblAtt:"Посещение", yesLbl:"Да, я буду там 🤍", noLbl:"С сожалением, не смогу",
+  lblGuests:"Количество гостей",
+  songLbl:"Песня, под которую вы хотите танцевать", optLbl:"(необязательно)", phSong:"мы передадим группе…",
+  submit:"Отправить ответ", formErr:"ПОЖАЛУЙСТА, УКАЖИТЕ ИМЯ И ВЫБЕРИТЕ ВАРИАНТ 🤍",
+  doneYes:"Спасибо, {name}!", doneNo:"Мы будем скучать, {name}.",
+  doneYesP:"Ваше место за нашим столом сохранено — гостей: {n}. Считаем дни до 28.09.",
+  doneNoP:"Спасибо, что сообщили. В этот день вы будете в наших сердцах.",
+  again:"Отправить другой ответ",
+  finScript:"со всей нашей любовью,",
+  finH2:"Мы не можем дождаться, когда отпразднуем это прекрасное начало с вами.",
+  finDate:"28 · 09 · 2026 &nbsp;✦&nbsp; ЕРЕВАН", finTag3:"Сделано с любовью"
+}};
+
+let LANG = 'en';
+try{
+  const saved = localStorage.getItem('aa-lang');
+  if(saved && I18N[saved]) LANG = saved;
+  else{
+    const nl = (navigator.language||'en').slice(0,2).toLowerCase();
+    if(I18N[nl]) LANG = nl;
+  }
+}catch(_){}
+
+function splitName(el, txt){
+  el.textContent='';
+  [...txt].forEach((ch,i)=>{
+    const s=document.createElement('span');
+    s.textContent = ch===' ' ? '\u00A0' : ch;
+    s.style.setProperty('--i', i);
+    s.setAttribute('aria-hidden','true');
+    el.appendChild(s);
+  });
+}
+function applyLang(lang){
+  LANG = lang;
+  const D = I18N[lang];
+  document.documentElement.lang = lang;
+  document.title = D.title;
+  $$('[data-i18n]').forEach(el=>{ const k=el.dataset.i18n; if(D[k]!==undefined) el.textContent=D[k]; });
+  $$('[data-i18n-html]').forEach(el=>{ const k=el.dataset.i18nHtml; if(D[k]!==undefined) el.innerHTML=D[k]; });
+  $$('[data-i18n-ph]').forEach(el=>{ const k=el.dataset.i18nPh; if(D[k]!==undefined) el.placeholder=D[k]; });
+  splitName($('#ldName'), D.ldName);
+  $$('.lang button').forEach(b=>b.classList.toggle('on', b.dataset.lang===lang));
+  try{ localStorage.setItem('aa-lang', lang); }catch(_){}
+}
+$$('.lang button').forEach(b=>b.addEventListener('click', ()=>applyLang(b.dataset.lang)));
+applyLang(LANG);
+
 /* ─────────── OPENING SEQUENCE ─────────── */
 const loader = $('#loader'), openBtn = $('#openBtn');
-// split name into letters
-(function(){
-  const el = $('#ldName'), txt = el.textContent.trim(); el.textContent = '';
-  [...txt].forEach((ch,i)=>{
-    const s = document.createElement('span');
-    s.textContent = ch === ' ' ? '\u00A0' : ch; s.style.setProperty('--i', i);
-    s.setAttribute('aria-hidden','true'); el.appendChild(s);
-  });
-})();
 setTimeout(()=>loader.classList.add('ready'), 250);
 setTimeout(()=>{ loader.classList.add('ready2'); try{openBtn.focus({preventScroll:true});}catch(e){} }, 2100);
 
@@ -719,6 +928,19 @@ if(!RM){
   run();
 }
 
+/* ─────────── OFFLINE GRACE — elegant monogram placeholder ─────────── */
+function phSVG(){
+  const svg = "<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='1400'>"
+    + "<rect width='100%' height='100%' fill='#E8E1D4'/>"
+    + "<rect x='50' y='50' width='1100' height='1300' fill='none' stroke='#D8C6A8' stroke-width='2'/>"
+    + "<text x='50%' y='50%' font-family='Georgia,serif' font-size='150' fill='#A99A8C' text-anchor='middle' dominant-baseline='middle'>A·A</text>"
+    + "<text x='50%' y='56%' font-family='Georgia,serif' font-size='34' letter-spacing='14' fill='#A99A8C' text-anchor='middle'>28·09·2026</text></svg>";
+  return 'data:image/svg+xml,' + encodeURIComponent(svg);
+}
+$$('img').forEach(img=>{
+  img.addEventListener('error', ()=>{ if(!img.dataset.ph){ img.dataset.ph=1; img.src=phSVG(); } }, {once:true});
+});
+
 /* ─────────── PETALS — very slow, canvas ─────────── */
 const cv = $('#petals'), ctx = cv.getContext('2d');
 let W, H, petals = [];
@@ -765,7 +987,7 @@ if(!RM){
 }
 function burst(x,y){ if(RM) return; for(let i=0;i<34;i++) petals.push(makePetal(true, x, y)); }
 
-/* ─────────── GENERATIVE WEDDING MUSIC (Web Audio) ─────────── */
+/* ─────────── GENERATIVE WEDDING MUSIC (Web Audio, offline-safe) ─────────── */
 const Music = {
   ctx:null, master:null, playing:false, timer:null, step:0, next:0,
   chords:[ [53,57,60,64], [48,55,59,64], [45,52,57,60], [50,53,57,62] ], // Fmaj7 · Cmaj7 · Am · Dm7
@@ -797,14 +1019,15 @@ const Music = {
       const chord = this.chords[Math.floor(this.step/8) % this.chords.length];
       const pos = this.step % 8, t = this.next;
       const pat = [0,1,2,3,2,3,1,2];
-      if(pos===0) this.note(chord[0]-12, t, 3.8, .13);                 // soft bass
-      this.note(chord[pat[pos]], t, 2.6, .085 + (pos%4===0?.02:0));    // arpeggio
-      if(this.step % 16 === 14) this.note(chord[3]+12, t, 3, .045);    // shimmer
+      if(pos===0) this.note(chord[0]-12, t, 3.8, .13);
+      this.note(chord[pat[pos]], t, 2.6, .085 + (pos%4===0?.02:0));
+      if(this.step % 16 === 14) this.note(chord[3]+12, t, 3, .045);
       this.next += .56; this.step++;
     }
   },
   start(){
-    if(this.playing || !this.ctx) this.ensure(); if(!this.ctx) return;
+    if(!this.ctx) this.ensure(); if(!this.ctx) return;
+    if(this.playing) return;
     this.ctx.resume(); this.playing = true;
     this.next = this.ctx.currentTime + .15;
     this.timer = setInterval(()=>this.schedule(), 200);
@@ -845,6 +1068,7 @@ tickCd(); setInterval(tickCd, 1000);
 const form = $('#rsvpForm'), err = $('#formErr');
 form.addEventListener('submit', e=>{
   e.preventDefault();
+  const D = I18N[LANG];
   const name = form.name.value.trim();
   const attend = form.attend.value;
   if(!name || !attend){
@@ -862,13 +1086,11 @@ form.addEventListener('submit', e=>{
   card.innerHTML =
     '<div class="rsvp-done">' +
       '<div class="check">✦</div>' +
-      '<h3>' + (yes ? 'Thank you, ' + first + '!' : 'We will miss you, ' + first + '.') + '</h3>' +
-      '<p>' + (yes
-        ? 'Your seat at our table is saved — ' + guests + ' guest' + (guests>1?'s':'') + ', counting down the days to 28.09.'
-        : 'Thank you for letting us know. You will be in our hearts on the day.') + '</p>' +
-      '<button class="rsvp-again" id="againBtn">Send another response</button>' +
+      '<h3>' + (yes ? D.doneYes.replace('{name}', first) : D.doneNo.replace('{name}', first)) + '</h3>' +
+      '<p>' + (yes ? D.doneYesP.replace('{n}', guests) : D.doneNoP) + '</p>' +
+      '<button class="rsvp-again" id="againBtn">' + D.again + '</button>' +
     '</div>';
-  try{ localStorage.setItem('aa-rsvp', JSON.stringify({name, attend, guests, song:form.song.value, at:Date.now()})); }catch(_){}
+  try{ localStorage.setItem('aa-rsvp', JSON.stringify({name, attend, guests, song:form.song.value, lang:LANG, at:Date.now()})); }catch(_){}
   $('#againBtn').addEventListener('click', ()=>location.reload());
 });
 })();
