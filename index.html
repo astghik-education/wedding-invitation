@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hy">
 <head>
@@ -12,6 +13,9 @@
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Great+Vibes&family=Noto+Sans+Armenian:wght@400;600;700&display=swap"
     rel="stylesheet"
   />
+
+  <!-- QR կոդի գրադարան -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
   <style>
     :root {
@@ -28,13 +32,8 @@
       --font-title: "Great Vibes", "Cormorant Garamond", "Noto Sans Armenian", cursive;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -46,30 +45,12 @@
       overflow-x: hidden;
     }
 
-    body.locked {
-      overflow: hidden;
-      height: 100vh;
-    }
+    body.locked { overflow: hidden; height: 100vh; }
+    [hidden] { display: none !important; }
+    img, video { max-width: 100%; display: block; }
 
-    [hidden] {
-      display: none !important;
-    }
-
-    img,
-    video {
-      max-width: 100%;
-      display: block;
-    }
-
-    .container {
-      width: min(1120px, calc(100% - 32px));
-      margin: 0 auto;
-    }
-
-    .section {
-      padding: 92px 0;
-      position: relative;
-    }
+    .container { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+    .section { padding: 92px 0; position: relative; }
 
     .section-title {
       margin: 0 0 24px;
@@ -122,11 +103,8 @@
       border-color: rgba(212, 175, 122, 0.65);
     }
 
-    .btn.small {
-      min-height: 42px;
-      padding: 10px 14px;
-      font-size: 0.95rem;
-    }
+    .btn.small { min-height: 42px; padding: 10px 14px; font-size: 0.95rem; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
     /* Language switcher */
     .lang-switcher {
@@ -156,11 +134,7 @@
       transition: 0.2s ease;
     }
 
-    .lang-btn.active {
-      background: var(--gold);
-      color: #171005;
-      font-weight: 700;
-    }
+    .lang-btn.active { background: var(--gold); color: #171005; font-weight: 700; }
 
     /* Overlay */
     .invite-overlay {
@@ -178,11 +152,7 @@
       transition: opacity 0.8s ease, visibility 0.8s ease;
     }
 
-    .invite-overlay.hidden {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
+    .invite-overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 
     .overlay-card {
       width: min(760px, 100%);
@@ -223,14 +193,8 @@
     }
 
     @keyframes floatIn {
-      from {
-        opacity: 0;
-        transform: translateY(28px) scale(0.97);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+      from { opacity: 0; transform: translateY(28px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     /* Hero */
@@ -270,32 +234,14 @@
       animation: slideFade 18s linear infinite;
     }
 
-    .hero-media .slideshow span:nth-child(1) {
-      animation-delay: 0s;
-    }
-
-    .hero-media .slideshow span:nth-child(2) {
-      animation-delay: 6s;
-    }
-
-    .hero-media .slideshow span:nth-child(3) {
-      animation-delay: 12s;
-    }
+    .hero-media .slideshow span:nth-child(1) { animation-delay: 0s; }
+    .hero-media .slideshow span:nth-child(2) { animation-delay: 6s; }
+    .hero-media .slideshow span:nth-child(3) { animation-delay: 12s; }
 
     @keyframes slideFade {
-      0% {
-        opacity: 0;
-        transform: scale(1.06);
-      }
-      10%,
-      30% {
-        opacity: 0.38;
-      }
-      42%,
-      100% {
-        opacity: 0;
-        transform: scale(1.12);
-      }
+      0% { opacity: 0; transform: scale(1.06); }
+      10%, 30% { opacity: 0.38; }
+      42%, 100% { opacity: 0; transform: scale(1.12); }
     }
 
     .hero-overlay {
@@ -307,10 +253,7 @@
         radial-gradient(circle at center, rgba(212, 175, 122, 0.08), transparent 36%);
     }
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-    }
+    .hero-content { position: relative; z-index: 2; }
 
     .hero-content h1 {
       margin: 14px 0 10px;
@@ -387,6 +330,91 @@
       -webkit-backdrop-filter: blur(12px);
     }
 
+    /* Love Story */
+    .love-story {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      padding-left: 28px;
+    }
+
+    .love-story::before {
+      content: "";
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, var(--gold), transparent);
+    }
+
+    .story-item {
+      position: relative;
+      margin: 28px 0;
+      padding: 26px;
+      border-radius: 22px;
+      border: 1px solid rgba(212, 175, 122, 0.2);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)), rgba(15, 12, 8, 0.4);
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .story-item::before {
+      content: "";
+      position: absolute;
+      left: -26px;
+      top: 34px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 6px rgba(212, 175, 122, 0.12);
+    }
+
+    .story-image {
+      width: 160px;
+      height: 160px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(212, 175, 122, 0.24);
+      flex-shrink: 0;
+    }
+
+    .story-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .story-body { min-width: 0; }
+
+    .story-date {
+      display: inline-block;
+      color: var(--gold);
+      font-size: 0.9rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .story-title {
+      margin: 0 0 10px;
+      font-size: 1.5rem;
+      color: var(--ivory);
+      font-family: var(--font-title);
+      font-weight: 400;
+    }
+
+    .story-desc {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
     /* Timeline */
     .timeline {
       position: relative;
@@ -411,9 +439,7 @@
       padding: 22px;
       border-radius: 20px;
       border: 1px solid rgba(212, 175, 122, 0.18);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
-        rgba(15, 12, 8, 0.35);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)), rgba(15, 12, 8, 0.35);
       box-shadow: var(--shadow);
     }
 
@@ -444,30 +470,12 @@
       letter-spacing: 0.08em;
     }
 
-    .timeline-icon {
-      font-size: 1.5rem;
-      line-height: 1;
-    }
+    .timeline-icon { font-size: 1.5rem; line-height: 1; }
 
-    .timeline-title {
-      margin: 0 0 8px;
-      font-size: 1.35rem;
-      color: var(--ivory);
-    }
+    .timeline-title { margin: 0 0 8px; font-size: 1.35rem; color: var(--ivory); }
+    .timeline-venue, .timeline-address { margin: 4px 0; color: var(--muted); line-height: 1.7; }
 
-    .timeline-venue,
-    .timeline-address {
-      margin: 4px 0;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    .map-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 16px;
-    }
+    .map-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
 
     /* Dress code */
     .palette {
@@ -503,8 +511,158 @@
       pointer-events: none;
     }
 
-    .swatch:hover::after {
-      opacity: 1;
+    .swatch:hover::after { opacity: 1; }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .gallery-item {
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border-radius: 16px;
+      border: 1px solid rgba(212, 175, 122, 0.18);
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover { transform: scale(1.03); }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-item:hover img { transform: scale(1.1); }
+
+    .gallery-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(212, 175, 122, 0.2), rgba(212, 175, 122, 0.05));
+      color: var(--muted);
+      font-size: 2.5rem;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(0, 0, 0, 0.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .lightbox.active { display: flex; }
+
+    .lightbox-content {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .lightbox-content img {
+      max-width: 100%;
+      max-height: 90vh;
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid rgba(248, 243, 232, 0.3);
+      background: rgba(10, 8, 5, 0.7);
+      color: var(--ivory);
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 2001;
+    }
+
+    /* Wish list */
+    .wishlist-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 32px;
+    }
+
+    .wish-item {
+      padding: 22px;
+      border-radius: 20px;
+      border: 1px solid rgba(212, 175, 122, 0.2);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)), rgba(15, 12, 8, 0.35);
+      box-shadow: var(--shadow);
+      transition: 0.25s ease;
+    }
+
+    .wish-item.claimed {
+      border-color: rgba(212, 175, 122, 0.5);
+      background: linear-gradient(180deg, rgba(212, 175, 122, 0.12), rgba(212, 175, 122, 0.04)), rgba(15, 12, 8, 0.4);
+    }
+
+    .wish-emoji {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .wish-title {
+      margin: 0 0 8px;
+      font-size: 1.25rem;
+      color: var(--ivory);
+      font-family: var(--font-title);
+      font-weight: 400;
+    }
+
+    .wish-desc {
+      margin: 0 0 16px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 0.95rem;
+      min-height: 48px;
+    }
+
+    .wish-claimed-by {
+      font-size: 0.9rem;
+      color: var(--gold);
+      margin: 0 0 12px;
+      font-style: italic;
+    }
+
+    .wish-input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(248, 243, 232, 0.16);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--ivory);
+      font: inherit;
+      margin-bottom: 10px;
+    }
+
+    .wish-input:focus {
+      border-color: var(--gold);
+      outline: none;
     }
 
     /* RSVP */
@@ -515,11 +673,7 @@
       gap: 18px;
     }
 
-    .form-label {
-      font-weight: 600;
-      margin-bottom: 8px;
-      display: block;
-    }
+    .form-label { font-weight: 600; margin-bottom: 8px; display: block; }
 
     .input {
       width: 100%;
@@ -534,19 +688,10 @@
       transition: 0.2s ease;
     }
 
-    .input:focus {
-      border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(212, 175, 122, 0.12);
-    }
+    .input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212, 175, 122, 0.12); }
+    .input::placeholder { color: rgba(248, 243, 232, 0.42); }
 
-    .input::placeholder {
-      color: rgba(248, 243, 232, 0.42);
-    }
-
-    .radio-group {
-      display: grid;
-      gap: 12px;
-    }
+    .radio-group { display: grid; gap: 12px; }
 
     .choice {
       display: flex;
@@ -560,22 +705,44 @@
       transition: 0.2s ease;
     }
 
-    .choice:hover {
-      border-color: rgba(212, 175, 122, 0.45);
-      background: rgba(212, 175, 122, 0.07);
-    }
-
-    .choice input {
-      accent-color: var(--gold);
-      width: 18px;
-      height: 18px;
-    }
+    .choice:hover { border-color: rgba(212, 175, 122, 0.45); background: rgba(212, 175, 122, 0.07); }
+    .choice input { accent-color: var(--gold); width: 18px; height: 18px; }
 
     .form-message {
       min-height: 24px;
       margin: 0;
       text-align: center;
       color: var(--gold);
+      line-height: 1.7;
+    }
+
+    /* QR Section */
+    .qr-section {
+      text-align: center;
+      padding: 48px 24px;
+      border-radius: 26px;
+      border: 1px solid rgba(212, 175, 122, 0.24);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)), rgba(15, 12, 8, 0.4);
+      box-shadow: var(--shadow);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .qr-container {
+      display: inline-block;
+      padding: 18px;
+      background: var(--ivory);
+      border-radius: 18px;
+      margin: 20px 0;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    }
+
+    .qr-container canvas,
+    .qr-container img { display: block; }
+
+    .qr-hint {
+      color: var(--muted);
+      margin: 16px 0 0;
       line-height: 1.7;
     }
 
@@ -599,11 +766,7 @@
       box-shadow: var(--shadow);
     }
 
-    .music-info {
-      display: grid;
-      gap: 4px;
-      min-width: 120px;
-    }
+    .music-info { display: grid; gap: 4px; min-width: 120px; }
 
     .music-title {
       color: var(--muted);
@@ -612,35 +775,13 @@
       letter-spacing: 0.16em;
     }
 
-    #musicLabel {
-      color: var(--ivory);
-      font-weight: 600;
-    }
+    #musicLabel { color: var(--ivory); font-weight: 600; }
 
-    .music-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
+    .music-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+    .music-status { flex-basis: 100%; color: rgba(248, 243, 232, 0.6); font-size: 0.9rem; }
+    .icon-btn { width: 48px; height: 48px; padding: 0; font-size: 1rem; }
 
-    .music-status {
-      flex-basis: 100%;
-      color: rgba(248, 243, 232, 0.6);
-      font-size: 0.9rem;
-    }
-
-    .icon-btn {
-      width: 48px;
-      height: 48px;
-      padding: 0;
-      font-size: 1rem;
-    }
-
-    footer {
-      padding: 36px 0 110px;
-      text-align: center;
-      color: var(--muted);
-    }
+    footer { padding: 36px 0 110px; text-align: center; color: var(--muted); }
 
     .reveal {
       opacity: 0;
@@ -648,38 +789,29 @@
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
 
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
     @media (max-width: 700px) {
-      .section {
-        padding: 68px 0;
+      .section { padding: 68px 0; }
+      .count-box { min-width: 74px; padding: 12px 8px; }
+      .timeline { padding-left: 22px; }
+      .timeline-item::before { left: -20px; }
+      .love-story { padding-left: 22px; }
+      .story-item::before { left: -20px; }
+
+      .story-item {
+        grid-template-columns: 1fr;
+        text-align: center;
       }
 
-      .count-box {
-        min-width: 74px;
-        padding: 12px 8px;
+      .story-image {
+        width: 140px;
+        height: 140px;
+        margin: 0 auto;
       }
 
-      .timeline {
-        padding-left: 22px;
-      }
-
-      .timeline-item::before {
-        left: -20px;
-      }
-
-      .music-control {
-        right: 16px;
-        justify-content: center;
-      }
-
-      .lang-switcher {
-        top: 12px;
-        right: 12px;
-      }
+      .music-control { right: 16px; justify-content: center; }
+      .lang-switcher { top: 12px; right: 12px; }
     }
   </style>
 </head>
@@ -694,7 +826,7 @@
   </div>
 
   <!-- Opening invitation overlay -->
-  <div class="invite-overlay" id="inviteOverlay" role="dialog" aria-modal="true" aria-label="Invitation cover">
+  <div class="invite-overlay" id="inviteOverlay" role="dialog" aria-modal="true">
     <div class="overlay-card">
       <p class="pretitle" data-i18n="weddingInvitation">Հարսանյաց հրավիրատոմս</p>
       <div class="overlay-line"></div>
@@ -710,12 +842,9 @@
     <!-- Hero -->
     <section class="hero" id="hero">
       <div class="hero-media" aria-hidden="true">
-        <!-- Եթե ունեք տեսանյութ՝ դրեք media/background.mp4 -->
         <video autoplay muted loop playsinline>
           <source src="media/background.mp4" type="video/mp4" />
         </video>
-
-        <!-- Եթե տեսանյութ չկա, կարող եք ավելացնել դանդաղ փոխվող նկարներ -->
         <div class="slideshow">
           <span style="background-image:url('images/slide1.jpg')"></span>
           <span style="background-image:url('images/slide2.jpg')"></span>
@@ -753,7 +882,7 @@
       </div>
     </section>
 
-    <!-- Welcome text -->
+    <!-- Welcome -->
     <section class="section reveal" id="welcome">
       <div class="container">
         <h2 class="section-title" data-i18n="welcomeTitle">Ողջույնի խոսք</h2>
@@ -764,6 +893,32 @@
         </div>
       </div>
     </section>
+
+    <!-- Love Story -->
+    <section class="section reveal" id="lovestory">
+      <div class="container">
+        <h2 class="section-title" data-i18n="storyTitle">Մեր Սիրո Պատմությունը</h2>
+        <p class="section-subtitle" data-i18n="storySubtitle">Յուրաքանչյուր մեծ սեր ունի իր սկիզբը…</p>
+        <div class="love-story" id="loveStoryList"></div>
+      </div>
+    </section>
+
+    <!-- Photo Gallery -->
+    <section class="section reveal" id="gallery">
+      <div class="container">
+        <h2 class="section-title" data-i18n="galleryTitle">Մեր Պահերը</h2>
+        <p class="section-subtitle" data-i18n="gallerySubtitle">Մեր համատեղ ճանապարհի փոքրիկ հուշեր</p>
+        <div class="gallery-grid" id="galleryGrid"></div>
+      </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Close">×</button>
+      <div class="lightbox-content">
+        <img id="lightboxImg" alt="" />
+      </div>
+    </div>
 
     <!-- Timeline -->
     <section class="section reveal" id="schedule">
@@ -777,10 +932,7 @@
     <section class="section reveal" id="dresscode">
       <div class="container">
         <h2 class="section-title" data-i18n="dressCodeTitle">Dress Code / Գույների գամմա</h2>
-        <p class="section-subtitle" data-i18n="dressCodeText">
-          Մեր հարսանիքի գունային գամման։
-        </p>
-
+        <p class="section-subtitle" data-i18n="dressCodeText">Մեր հարսանիքի գունային գամման։</p>
         <div class="palette">
           <span class="swatch" style="--swatch:#F7F1E6" data-i18n-title="colorIvory" data-name="Ivory"></span>
           <span class="swatch" style="--swatch:#E8D3B0" data-i18n-title="colorChampagne" data-name="Champagne"></span>
@@ -788,6 +940,17 @@
           <span class="swatch" style="--swatch:#8E9E8A" data-i18n-title="colorSage" data-name="Sage"></span>
           <span class="swatch" style="--swatch:#5C6B7A" data-i18n-title="colorDustyBlue" data-name="Dusty Blue"></span>
         </div>
+      </div>
+    </section>
+
+    <!-- Wish List -->
+    <section class="section reveal" id="wishlist">
+      <div class="container">
+        <h2 class="section-title" data-i18n="wishlistTitle">Նվերների Ցանկ</h2>
+        <p class="section-subtitle" data-i18n="wishlistSubtitle">
+          Ձեր ներկայությունը մեր ամենաթանկ նվերն է։ Իսկ եթե ցանկանում եք նվիրել ինչ-որ բան, այստեղ կարող եք տեսնել մեր փոքրիկ ցանկը։
+        </p>
+        <div class="wishlist-grid" id="wishlistGrid"></div>
       </div>
     </section>
 
@@ -816,7 +979,6 @@
                 <input type="radio" name="attendance" value="yes" />
                 <span data-i18n="attendingYes">Սիրով ներկա կլինեմ</span>
               </label>
-
               <label class="choice">
                 <input type="radio" name="attendance" value="no" />
                 <span data-i18n="attendingNo">Ցավոք, չեմ կարող</span>
@@ -826,6 +988,23 @@
             <button class="btn" type="submit" data-i18n="submit">Ուղարկել</button>
             <p class="form-message" id="formMessage" role="status"></p>
           </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- QR Code -->
+    <section class="section reveal" id="qrcode">
+      <div class="container">
+        <div class="qr-section">
+          <h2 class="section-title" data-i18n="qrTitle" style="margin-bottom: 8px;">Հրավիրատոմսը QR կոդով</h2>
+          <p class="section-subtitle" data-i18n="qrSubtitle" style="margin-bottom: 0;">
+            Տարածեք այս էջը ձեր ընկերների հետ՝ սկանավորելով QR կոդը։
+          </p>
+          <div class="qr-container" id="qrCode"></div>
+          <p class="qr-hint" data-i18n="qrHint">
+            Սկանավորեք Ձեր հեռախոսով՝ էջը արագ բացելու համար։
+          </p>
+          <button class="btn" id="downloadQR" type="button" data-i18n="downloadQR">📥 Ներբեռնել QR կոդը</button>
         </div>
       </div>
     </section>
@@ -845,12 +1024,8 @@
     </div>
 
     <div class="music-buttons">
-      <button class="btn small music-choice" type="button" data-music-index="0" data-i18n="musicFrench">
-        Ֆրանսիական
-      </button>
-      <button class="btn small music-choice" type="button" data-music-index="1" data-i18n="musicItalian">
-        Իտալական
-      </button>
+      <button class="btn small music-choice" type="button" data-music-index="0" data-i18n="musicFrench">Ֆրանսիական</button>
+      <button class="btn small music-choice" type="button" data-music-index="1" data-i18n="musicItalian">Իտալական</button>
     </div>
 
     <span class="music-status" id="musicStatus"></span>
@@ -872,49 +1047,43 @@
       }
     };
 
-    // Եթե ուզում եք RSVP-ն իրականում ուղարկել Formspree / Google Apps Script,
-    // դրեք endpoint-ը, օրինակ՝ "https://formspree.io/f/yourID"
-    const RSVP_ENDPOINT = "";
+    const RSVP_ENDPOINT = ""; // Formspree / Google Apps Script endpoint (optional)
 
-    // Ավելացրեք MP3 ֆայլերը audio/ պանակում՝ french.mp3, italian.mp3
     const MUSIC = [
       { labelKey: "musicFrench", src: "audio/french.mp3" },
       { labelKey: "musicItalian", src: "audio/italian.mp3" }
     ];
 
     const EVENTS = [
-      {
-        time: "11:00",
-        icon: "🏡",
-        titleKey: "groomHouse",
-        venueKey: "groomHouseVenue",
-        addressKey: "groomHouseAddress",
-        mapKey: "groomHouse"
-      },
-      {
-        time: "12:00",
-        icon: "🏡",
-        titleKey: "brideHouse",
-        venueKey: "brideHouseVenue",
-        addressKey: "brideHouseAddress",
-        mapKey: "brideHouse"
-      },
-      {
-        time: "14:00",
-        icon: "💍",
-        titleKey: "ceremony",
-        venueKey: "ceremonyVenue",
-        addressKey: "ceremonyAddress",
-        mapKey: "church"
-      },
-      {
-        time: "15:00",
-        icon: "🥂",
-        titleKey: "reception",
-        venueKey: "receptionVenue",
-        addressKey: "receptionAddress",
-        mapKey: "restaurant"
-      }
+      { time: "11:00", icon: "🏡", titleKey: "groomHouse", venueKey: "groomHouseVenue", addressKey: "groomHouseAddress", mapKey: "groomHouse" },
+      { time: "12:00", icon: "🏡", titleKey: "brideHouse", venueKey: "brideHouseVenue", addressKey: "brideHouseAddress", mapKey: "brideHouse" },
+      { time: "14:00", icon: "💍", titleKey: "ceremony", venueKey: "ceremonyVenue", addressKey: "ceremonyAddress", mapKey: "church" },
+      { time: "15:00", icon: "🥂", titleKey: "reception", venueKey: "receptionVenue", addressKey: "receptionAddress", mapKey: "restaurant" }
+    ];
+
+    // LOVE STORY events
+    const LOVE_STORY = [
+      { dateKey: "storyDate1", titleKey: "storyTitle1", descKey: "storyDesc1", image: "images/story1.jpg", emoji: "✨" },
+      { dateKey: "storyDate2", titleKey: "storyTitle2", descKey: "storyDesc2", image: "images/story2.jpg", emoji: "💕" },
+      { dateKey: "storyDate3", titleKey: "storyTitle3", descKey: "storyDesc3", image: "images/story3.jpg", emoji: "💍" }
+    ];
+
+    // GALLERY images - add/remove paths
+    const GALLERY = [
+      "images/gallery1.jpg",
+      "images/gallery2.jpg",
+      "images/gallery3.jpg",
+      "images/gallery4.jpg",
+      "images/gallery5.jpg",
+      "images/gallery6.jpg"
+    ];
+
+    // WISH LIST items
+    const WISHES = [
+      { id: "w1", emoji: "✈️", titleKey: "wish1Title", descKey: "wish1Desc" },
+      { id: "w2", emoji: "🍷", titleKey: "wish2Title", descKey: "wish2Desc" },
+      { id: "w3", emoji: "🍽️", titleKey: "wish3Title", descKey: "wish3Desc" },
+      { id: "w4", emoji: "🏖️", titleKey: "wish4Title", descKey: "wish4Desc" }
     ];
 
     /*******************************************************
@@ -939,34 +1108,52 @@
 
 Ձեր ներկայությունը կլինի մեր օրվա ամենաթանկ նվերներից մեկը։`,
 
+        // Love Story
+        storyTitle: "Մեր Սիրո Պատմությունը",
+        storySubtitle: "Յուրաքանչյուր մեծ սեր ունի իր սկիզբը…",
+        storyDate1: "Հունիս 2021",
+        storyTitle1: "Առաջին հանդիպումը",
+        storyDesc1: "Այն ամռան երեկո մենք հանդիպեցինք և հասկացանք, որ այս հանդիպումը հատուկ է լինելու։",
+        storyDate2: "Օգոստոս 2021",
+        storyTitle2: "Առաջին ժամադրությունը",
+        storyDesc2: "Սուրճ, ծիծաղ ու անվերջ խոսակցություններ։ Այդ երեկո մենք հասկացանք, որ սիրահարված ենք։",
+        storyDate3: "Մարտ 2026",
+        storyTitle3: "Առաջարկությունը",
+        storyDesc3: "Արևածագին, մեր սիրելի վայրում, նա հարցրեց այն ամենակարևոր հարցը… և ես ասացի «Այո»։",
+
+        // Gallery
+        galleryTitle: "Մեր Պահերը",
+        gallerySubtitle: "Մեր համատեղ ճանապարհի փոքրիկ հուշեր",
+        galleryPlaceholder: "Նկար",
+
         scheduleTitle: "Օրվա ժամանակացույց",
-        groomHouse: "Փեսայի տուն",
-        groomHouseVenue: "Փեսայի ընտանիքի տուն",
-        groomHouseAddress: "Հասցե՝ Ձեր հասցեն",
-        brideHouse: "Հարսի տուն",
-        brideHouseVenue: "Հարսի ընտանիքի տուն",
-        brideHouseAddress: "Հասցե՝ Ձեր հասցեն",
-        ceremony: "Պսակադրություն",
-        ceremonyVenue: "Սուրբ Սարգիս եկեղեցի",
-        ceremonyAddress: "Հասցե՝ Ձեր հասցեն",
-        reception: "Հարսանյաց հանդիսություն",
-        receptionVenue: "Դվին ռեստորան",
-        receptionAddress: "Հասցե՝ Ձեր հասցեն",
+        groomHouse: "Փեսայի տուն", groomHouseVenue: "Փեսայի ընտանիքի տուն", groomHouseAddress: "Հասցե՝ Ձեր հասցեն",
+        brideHouse: "Հարսի տուն", brideHouseVenue: "Հարսի ընտանիքի տուն", brideHouseAddress: "Հասցե՝ Ձեր հասցեն",
+        ceremony: "Պսակադրություն", ceremonyVenue: "Սուրբ Սարգիս եկեղեցի", ceremonyAddress: "Հասցե՝ Ձեր հասցեն",
+        reception: "Հարսանյաց հանդիսություն", receptionVenue: "Դվին ռեստորան", receptionAddress: "Հասցե՝ Ձեր հասցեն",
         openMap: "Բացել քարտեզում",
 
         dressCodeTitle: "Dress Code / Գույների գամմա",
         dressCodeText: "Մեզ համար կարևոր է, որ այս օրը լինի ներդաշնակ ու միասնական։ Ստորև նշված գույները կօգնեն Ձեզ ընտրել համապատասխան հագուստ։",
-        colorIvory: "Փղոսկր",
-        colorChampagne: "Շամպայն",
-        colorGold: "Ոսկեգույն",
-        colorSage: "Կանաչավուն",
-        colorDustyBlue: "Մոխրակապույտ",
+        colorIvory: "Փղոսկր", colorChampagne: "Շամպայն", colorGold: "Ոսկեգույն", colorSage: "Կանաչավուն", colorDustyBlue: "Մոխրակապույտ",
+
+        // Wish List
+        wishlistTitle: "Նվերների Ցանկ",
+        wishlistSubtitle: "Ձեր ներկայությունը մեր ամենաթանկ նվերն է։ Իսկ եթե ցանկանում եք նվիրել ինչ-որ բան, այստեղ կարող եք տեսնել մեր փոքրիկ ցանկը։",
+        wish1Title: "Մեղրամիսի թռիչք", wish1Desc: "Մեր երազանքների մեղրամսի թռիչքը դեպի Իտալիա։",
+        wish2Title: "Հատուկ գինի", wish2Desc: "Մեր առաջին տարեդարձի համար պահելու հատուկ գինի։",
+        wish3Title: "Ճաշի սպասք", wish3Desc: "Մեր նոր տան համար գեղեցիկ սպասքի հավաքածու։",
+        wish4Title: "Ծովափի արձակուրդ", wish4Desc: "Մեկ շաբաթ ծովափնյա հանգիստ մեր մեղրամսի ժամանակ։",
+        wishClaim: "Ես կնվիրեմ սա",
+        wishClaimed: "Արդեն նվիրել է",
+        wishClaimedBy: "Նվիրել է՝ ",
+        wishInputPlaceholder: "Ձեր անունը",
+        wishClaimSuccess: "Շնորհակալություն Ձեր նվերի համար։",
 
         rsvpTitle: "RSVP / Ներկայության հաստատում",
         nameLabel: "Անուն Ազգանուն",
         namePlaceholder: "Օրինակ՝ Մարիամ Հակոբյան",
-        attendingYes: "Սիրով ներկա կլինեմ",
-        attendingNo: "Ցավոք, չեմ կարող",
+        attendingYes: "Սիրով ներկա կլինեմ", attendingNo: "Ցավոք, չեմ կարող",
         submit: "Ուղարկել",
         rsvpErrorName: "Խնդրում ենք նշել Ձեր անուն-ազգանունը։",
         rsvpErrorAttendance: "Խնդրում ենք ընտրել ներկայության տարբերակը։",
@@ -974,18 +1161,16 @@
         rsvpSuccessNo: "Շնորհակալություն պատասխանի համար։ Մենք կկարոտենք Ձեզ այս օրը։",
         rsvpErrorSubmit: "Պատասխանի ուղարկման ժամանակ սխալ տեղի ունեցավ։ Խնդրում ենք կրկին փորձել։",
 
-        days: "Օր",
-        hours: "Ժամ",
-        minutes: "Րոպե",
-        seconds: "Վայրկյան",
+        // QR
+        qrTitle: "Հրավիրատոմսը QR կոդով",
+        qrSubtitle: "Տարածեք այս էջը ձեր ընկերների հետ՝ սկանավորելով QR կոդը։",
+        qrHint: "Սկանավորեք Ձեր հեռախոսով՝ էջը արագ բացելու համար։",
+        downloadQR: "📥 Ներբեռնել QR կոդը",
 
-        musicControlLabel: "Երաժշտություն",
-        musicFrench: "Ֆրանսիական",
-        musicItalian: "Իտալական",
-        musicPlay: "Նվագել",
-        musicPause: "Դադար",
+        days: "Օր", hours: "Ժամ", minutes: "Րոպե", seconds: "Վայրկյան",
+        musicControlLabel: "Երաժշտություն", musicFrench: "Ֆրանսիական", musicItalian: "Իտալական",
+        musicPlay: "Նվագել", musicPause: "Դադար",
         musicError: "Երաժշտությունը բեռնելու համար ավելացրեք MP3 ֆայլը audio/ պանակում։",
-
         madeWithLove: "Սիրով՝ Արման & Անի"
       },
 
@@ -1007,34 +1192,42 @@
 
 Ваше присутствие будет одним из самых дорогих подарков нашего дня.`,
 
+        storyTitle: "Наша История Любви",
+        storySubtitle: "У каждой великой любви есть свое начало…",
+        storyDate1: "Июнь 2021", storyTitle1: "Первая встреча", storyDesc1: "Тем летним вечером мы встретились и поняли, что эта встреча будет особенной.",
+        storyDate2: "Август 2021", storyTitle2: "Первое свидание", storyDesc2: "Кофе, смех и бесконечные разговоры. В тот вечер мы поняли, что влюбились.",
+        storyDate3: "Март 2026", storyTitle3: "Предложение", storyDesc3: "На рассвете, в нашем любимом месте, он задал самый важный вопрос… и я сказала «Да».",
+
+        galleryTitle: "Наши Моменты",
+        gallerySubtitle: "Маленькие воспоминания нашего совместного пути",
+        galleryPlaceholder: "Фото",
+
         scheduleTitle: "Программа дня",
-        groomHouse: "Дом жениха",
-        groomHouseVenue: "Дом семьи жениха",
-        groomHouseAddress: "Адрес: ваш адрес",
-        brideHouse: "Дом невесты",
-        brideHouseVenue: "Дом семьи невесты",
-        brideHouseAddress: "Адрес: ваш адрес",
-        ceremony: "Венчание",
-        ceremonyVenue: "Церковь Святого Саргиса",
-        ceremonyAddress: "Адрес: ваш адрес",
-        reception: "Свадебное торжество",
-        receptionVenue: "Ресторан Двин",
-        receptionAddress: "Адрес: ваш адрес",
+        groomHouse: "Дом жениха", groomHouseVenue: "Дом семьи жениха", groomHouseAddress: "Адрес: ваш адрес",
+        brideHouse: "Дом невесты", brideHouseVenue: "Дом семьи невесты", brideHouseAddress: "Адрес: ваш адрес",
+        ceremony: "Венчание", ceremonyVenue: "Церковь Святого Саргиса", ceremonyAddress: "Адрес: ваш адрес",
+        reception: "Свадебное торжество", receptionVenue: "Ресторан Двин", receptionAddress: "Адрес: ваш адрес",
         openMap: "Открыть в карте",
 
         dressCodeTitle: "Dress Code / Цветовая гамма",
         dressCodeText: "Нам важно, чтобы этот день выглядел гармонично и цельно. Указанные ниже цвета помогут вам выбрать подходящий образ.",
-        colorIvory: "Слоновая кость",
-        colorChampagne: "Шампань",
-        colorGold: "Золотой",
-        colorSage: "Шалфей",
-        colorDustyBlue: "Пыльный синий",
+        colorIvory: "Слоновая кость", colorChampagne: "Шампань", colorGold: "Золотой", colorSage: "Шалфей", colorDustyBlue: "Пыльный синий",
+
+        wishlistTitle: "Список Подарков",
+        wishlistSubtitle: "Ваше присутствие — самый дорогой для нас подарок. А если хотите подарить что-то еще, вот наш небольшой список.",
+        wish1Title: "Полет в медовый месяц", wish1Desc: "Билеты на наш мечтательный медовый месяц в Италию.",
+        wish2Title: "Особое вино", wish2Desc: "Особое вино, которое мы будем хранить до нашей первой годовщины.",
+        wish3Title: "Столовый сервиз", wish3Desc: "Красивый набор посуды для нашего нового дома.",
+        wish4Title: "Отпуск на море", wish4Desc: "Неделя отдыха на море во время медового месяца.",
+        wishClaim: "Я подарю это",
+        wishClaimed: "Уже подарено",
+        wishClaimedBy: "Подарил(а): ",
+        wishInputPlaceholder: "Ваше имя",
+        wishClaimSuccess: "Спасибо за ваш подарок.",
 
         rsvpTitle: "RSVP / Подтверждение присутствия",
-        nameLabel: "Имя и фамилия",
-        namePlaceholder: "Например: Мария Петрова",
-        attendingYes: "С радостью буду присутствовать",
-        attendingNo: "К сожалению, не смогу",
+        nameLabel: "Имя и фамилия", namePlaceholder: "Например: Мария Петрова",
+        attendingYes: "С радостью буду присутствовать", attendingNo: "К сожалению, не смогу",
         submit: "Отправить",
         rsvpErrorName: "Пожалуйста, укажите имя и фамилию.",
         rsvpErrorAttendance: "Пожалуйста, выберите вариант присутствия.",
@@ -1042,18 +1235,15 @@
         rsvpSuccessNo: "Спасибо за ответ. Мы будем скучать по вам в этот день.",
         rsvpErrorSubmit: "Произошла ошибка при отправке ответа. Пожалуйста, попробуйте еще раз.",
 
-        days: "Дни",
-        hours: "Часы",
-        minutes: "Минуты",
-        seconds: "Секунды",
+        qrTitle: "Приглашение через QR-код",
+        qrSubtitle: "Поделитесь этой страницей с друзьями, отсканировав QR-код.",
+        qrHint: "Отсканируйте телефоном, чтобы быстро открыть страницу.",
+        downloadQR: "📥 Скачать QR-код",
 
-        musicControlLabel: "Музыка",
-        musicFrench: "Французская",
-        musicItalian: "Итальянская",
-        musicPlay: "Играть",
-        musicPause: "Пауза",
+        days: "Дни", hours: "Часы", minutes: "Минуты", seconds: "Секунды",
+        musicControlLabel: "Музыка", musicFrench: "Французская", musicItalian: "Итальянская",
+        musicPlay: "Играть", musicPause: "Пауза",
         musicError: "Чтобы музыка работала, добавьте MP3-файл в папку audio/.",
-
         madeWithLove: "С любовью, Арман и Ани"
       },
 
@@ -1075,34 +1265,42 @@ when "I" becomes "we".
 
 Your presence will be one of the most precious gifts of our day.`,
 
+        storyTitle: "Our Love Story",
+        storySubtitle: "Every great love has its beginning…",
+        storyDate1: "June 2021", storyTitle1: "First Meeting", storyDesc1: "That summer evening we met and knew this encounter would be special.",
+        storyDate2: "August 2021", storyTitle2: "First Date", storyDesc2: "Coffee, laughter, and endless conversations. That evening we knew we were in love.",
+        storyDate3: "March 2026", storyTitle3: "The Proposal", storyDesc3: "At sunrise, in our favorite place, he asked the most important question… and I said 'Yes'.",
+
+        galleryTitle: "Our Moments",
+        gallerySubtitle: "Little memories of our journey together",
+        galleryPlaceholder: "Photo",
+
         scheduleTitle: "Schedule of the Day",
-        groomHouse: "Groom's House",
-        groomHouseVenue: "Groom's family house",
-        groomHouseAddress: "Address: your address",
-        brideHouse: "Bride's House",
-        brideHouseVenue: "Bride's family house",
-        brideHouseAddress: "Address: your address",
-        ceremony: "Wedding Ceremony",
-        ceremonyVenue: "Surp Sarkis Church",
-        ceremonyAddress: "Address: your address",
-        reception: "Wedding Reception",
-        receptionVenue: "Dvin Restaurant",
-        receptionAddress: "Address: your address",
+        groomHouse: "Groom's House", groomHouseVenue: "Groom's family house", groomHouseAddress: "Address: your address",
+        brideHouse: "Bride's House", brideHouseVenue: "Bride's family house", brideHouseAddress: "Address: your address",
+        ceremony: "Wedding Ceremony", ceremonyVenue: "Surp Sarkis Church", ceremonyAddress: "Address: your address",
+        reception: "Wedding Reception", receptionVenue: "Dvin Restaurant", receptionAddress: "Address: your address",
         openMap: "Open in Maps",
 
         dressCodeTitle: "Dress Code / Color Palette",
         dressCodeText: "It is important to us that this day looks harmonious and unified. The colors below may guide your outfit choice.",
-        colorIvory: "Ivory",
-        colorChampagne: "Champagne",
-        colorGold: "Gold",
-        colorSage: "Sage",
-        colorDustyBlue: "Dusty Blue",
+        colorIvory: "Ivory", colorChampagne: "Champagne", colorGold: "Gold", colorSage: "Sage", colorDustyBlue: "Dusty Blue",
+
+        wishlistTitle: "Wish List",
+        wishlistSubtitle: "Your presence is the most precious gift for us. If you wish to give something else, here is our small list.",
+        wish1Title: "Honeymoon Flight", wish1Desc: "Flights for our dream honeymoon in Italy.",
+        wish2Title: "Special Wine", wish2Desc: "A special bottle of wine to save for our first anniversary.",
+        wish3Title: "Dinnerware Set", wish3Desc: "A beautiful dinnerware set for our new home.",
+        wish4Title: "Beach Holiday", wish4Desc: "A week of relaxation by the sea during our honeymoon.",
+        wishClaim: "I'll gift this",
+        wishClaimed: "Already gifted",
+        wishClaimedBy: "Gifted by: ",
+        wishInputPlaceholder: "Your name",
+        wishClaimSuccess: "Thank you for your gift.",
 
         rsvpTitle: "RSVP / Attendance Confirmation",
-        nameLabel: "Full Name",
-        namePlaceholder: "e.g. Mary Smith",
-        attendingYes: "Joyfully attending",
-        attendingNo: "Unfortunately cannot attend",
+        nameLabel: "Full Name", namePlaceholder: "e.g. Mary Smith",
+        attendingYes: "Joyfully attending", attendingNo: "Unfortunately cannot attend",
         submit: "Submit",
         rsvpErrorName: "Please enter your full name.",
         rsvpErrorAttendance: "Please choose an attendance option.",
@@ -1110,18 +1308,15 @@ Your presence will be one of the most precious gifts of our day.`,
         rsvpSuccessNo: "Thank you for your response. We will miss you on our day.",
         rsvpErrorSubmit: "An error occurred while submitting your response. Please try again.",
 
-        days: "Days",
-        hours: "Hours",
-        minutes: "Minutes",
-        seconds: "Seconds",
+        qrTitle: "Invitation via QR Code",
+        qrSubtitle: "Share this page with friends by scanning the QR code.",
+        qrHint: "Scan with your phone to quickly open the page.",
+        downloadQR: "📥 Download QR Code",
 
-        musicControlLabel: "Music",
-        musicFrench: "French",
-        musicItalian: "Italian",
-        musicPlay: "Play",
-        musicPause: "Pause",
+        days: "Days", hours: "Hours", minutes: "Minutes", seconds: "Seconds",
+        musicControlLabel: "Music", musicFrench: "French", musicItalian: "Italian",
+        musicPlay: "Play", musicPause: "Pause",
         musicError: "To enable music, add an MP3 file to the audio/ folder.",
-
         madeWithLove: "With love, Arman & Ani"
       }
     };
@@ -1131,9 +1326,7 @@ Your presence will be one of the most precious gifts of our day.`,
      ******************************************************/
     let currentLang = localStorage.getItem("weddingLang") || "hy";
     if (!["hy", "ru", "en"].includes(currentLang)) currentLang = "hy";
-
     let currentMusicIndex = 0;
-
     const weddingDate = new Date(WEDDING.dateISO);
 
     const inviteOverlay = document.getElementById("inviteOverlay");
@@ -1149,31 +1342,21 @@ Your presence will be one of the most precious gifts of our day.`,
     }
 
     function formatDate() {
-      const localeMap = {
-        hy: "hy-AM",
-        ru: "ru-RU",
-        en: "en-GB"
-      };
-
+      const localeMap = { hy: "hy-AM", ru: "ru-RU", en: "en-GB" };
       try {
         return new Intl.DateTimeFormat(localeMap[currentLang] || "en-GB", {
-          day: "numeric",
-          month: "long",
-          year: "numeric"
+          day: "numeric", month: "long", year: "numeric"
         }).format(weddingDate);
       } catch (err) {
         return "25.10.2026";
       }
     }
 
-    function pad(n) {
-      return String(n).padStart(2, "0");
-    }
+    function pad(n) { return String(n).padStart(2, "0"); }
 
     function updateCountdown() {
       const now = new Date();
       let diff = weddingDate - now;
-
       if (diff < 0) diff = 0;
 
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -1192,83 +1375,154 @@ Your presence will be one of the most precious gifts of our day.`,
       document.getElementById("secondsLabel").textContent = t("seconds");
     }
 
+    /* Love Story */
+    function renderLoveStory() {
+      const list = document.getElementById("loveStoryList");
+      list.innerHTML = LOVE_STORY.map(item => `
+        <article class="story-item reveal">
+          <div class="story-image">
+            <img src="${item.image}" alt="" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'gallery-placeholder\\'>${item.emoji}</div>';" />
+          </div>
+          <div class="story-body">
+            <span class="story-date">${t(item.dateKey)}</span>
+            <h3 class="story-title">${t(item.titleKey)}</h3>
+            <p class="story-desc">${t(item.descKey)}</p>
+          </div>
+        </article>
+      `).join("");
+      observeReveals();
+    }
+
+    /* Gallery */
+    function renderGallery() {
+      const grid = document.getElementById("galleryGrid");
+      grid.innerHTML = GALLERY.map((img, i) => `
+        <div class="gallery-item reveal" data-img="${img}">
+          <img src="${img}" alt="" onerror="this.outerHTML='<div class=\\'gallery-placeholder\\'>${t('galleryPlaceholder')} ${i + 1}</div>';" />
+        </div>
+      `).join("");
+
+      document.querySelectorAll(".gallery-item").forEach(item => {
+        item.addEventListener("click", () => {
+          const img = item.getAttribute("data-img");
+          openLightbox(img);
+        });
+      });
+      observeReveals();
+    }
+
+    function openLightbox(src) {
+      const lightbox = document.getElementById("lightbox");
+      const img = document.getElementById("lightboxImg");
+      img.src = src;
+      lightbox.classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById("lightbox");
+      lightbox.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+
+    document.getElementById("lightboxClose").addEventListener("click", closeLightbox);
+    document.getElementById("lightbox").addEventListener("click", (e) => {
+      if (e.target.id === "lightbox") closeLightbox();
+    });
+
+    /* Timeline */
     function renderTimeline() {
       const timeline = document.getElementById("timeline");
+      timeline.innerHTML = EVENTS.map(event => `
+        <article class="timeline-item reveal">
+          <div class="timeline-top">
+            <span class="timeline-time">${event.time}</span>
+            <span class="timeline-icon">${event.icon}</span>
+          </div>
+          <h3 class="timeline-title">${t(event.titleKey)}</h3>
+          <p class="timeline-venue">${t(event.venueKey)}</p>
+          <p class="timeline-address">${t(event.addressKey)}</p>
+          <div class="map-actions">
+            <a class="btn small" href="${WEDDING.maps[event.mapKey]}" target="_blank" rel="noopener noreferrer">
+              📍 <span>${t("openMap")}</span>
+            </a>
+          </div>
+        </article>
+      `).join("");
+      observeReveals();
+    }
 
-      timeline.innerHTML = EVENTS.map((event) => {
+    /* Wish List */
+    function renderWishlist() {
+      const grid = document.getElementById("wishlistGrid");
+      grid.innerHTML = WISHES.map(wish => {
+        const claimed = localStorage.getItem(`wish_claimed_${wish.id}`);
+        const isClaimed = !!claimed;
         return `
-          <article class="timeline-item reveal">
-            <div class="timeline-top">
-              <span class="timeline-time">${event.time}</span>
-              <span class="timeline-icon">${event.icon}</span>
-            </div>
-
-            <h3 class="timeline-title">${t(event.titleKey)}</h3>
-            <p class="timeline-venue">${t(event.venueKey)}</p>
-            <p class="timeline-address">${t(event.addressKey)}</p>
-
-            <div class="map-actions">
-              <a
-                class="btn small"
-                href="${WEDDING.maps[event.mapKey]}"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                📍 <span>${t("openMap")}</span>
-              </a>
-            </div>
+          <article class="wish-item reveal ${isClaimed ? "claimed" : ""}" data-wish-id="${wish.id}">
+            <span class="wish-emoji">${wish.emoji}</span>
+            <h3 class="wish-title">${t(wish.titleKey)}</h3>
+            <p class="wish-desc">${t(wish.descKey)}</p>
+            ${isClaimed
+              ? `<p class="wish-claimed">${t("wishClaimedBy")} ${claimed}</p>`
+              : `<input type="text" class="wish-input" data-wish-input="${wish.id}" placeholder="${t('wishInputPlaceholder')}" />
+                 <button class="btn small" type="button" data-wish-btn="${wish.id}">${t("wishClaim")}</button>`
+            }
           </article>
         `;
       }).join("");
 
+      document.querySelectorAll("[data-wish-btn]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const wishId = btn.getAttribute("data-wish-btn");
+          const input = document.querySelector(`[data-wish-input="${wishId}"]`);
+          const name = input.value.trim();
+          if (!name) {
+            input.focus();
+            return;
+          }
+          localStorage.setItem(`wish_claimed_${wishId}`, name);
+          renderWishlist();
+        });
+      });
       observeReveals();
     }
 
     function updateMusicLabels() {
-      document.querySelectorAll(".music-choice").forEach((btn) => {
+      document.querySelectorAll(".music-choice").forEach(btn => {
         const index = Number(btn.dataset.musicIndex);
         btn.textContent = t(MUSIC[index].labelKey);
       });
-
-      playPauseBtn.setAttribute(
-        "aria-label",
-        bgMusic.paused ? t("musicPlay") : t("musicPause")
-      );
+      playPauseBtn.setAttribute("aria-label", bgMusic.paused ? t("musicPlay") : t("musicPause"));
     }
 
     function applyTranslations() {
       document.documentElement.lang = currentLang;
       document.title = t("pageTitle");
 
-      document.querySelectorAll("[data-i18n]").forEach((el) => {
-        const key = el.getAttribute("data-i18n");
-        el.textContent = t(key);
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        el.textContent = t(el.getAttribute("data-i18n"));
       });
-
-      document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
-        const key = el.getAttribute("data-i18n-placeholder");
-        el.placeholder = t(key);
+      document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+        el.placeholder = t(el.getAttribute("data-i18n-placeholder"));
       });
-
-      document.querySelectorAll("[data-i18n-title]").forEach((el) => {
-        const key = el.getAttribute("data-i18n-title");
-        const value = t(key);
-        el.title = value;
-        el.setAttribute("aria-label", value);
-        if (el.classList.contains("swatch")) {
-          el.dataset.name = value;
-        }
+      document.querySelectorAll("[data-i18n-title]").forEach(el => {
+        const val = t(el.getAttribute("data-i18n-title"));
+        el.title = val;
+        el.setAttribute("aria-label", val);
+        if (el.classList.contains("swatch")) el.dataset.name = val;
       });
-
-      document.querySelectorAll("[data-wedding-date]").forEach((el) => {
+      document.querySelectorAll("[data-wedding-date]").forEach(el => {
         el.textContent = formatDate();
       });
-
-      document.querySelectorAll(".lang-btn").forEach((btn) => {
+      document.querySelectorAll(".lang-btn").forEach(btn => {
         btn.classList.toggle("active", btn.dataset.lang === currentLang);
       });
 
+      renderLoveStory();
+      renderGallery();
       renderTimeline();
+      renderWishlist();
       updateCountdown();
       updateMusicLabels();
     }
@@ -1279,72 +1533,96 @@ Your presence will be one of the most precious gifts of our day.`,
       applyTranslations();
     }
 
-    document.querySelectorAll(".lang-btn").forEach((btn) => {
+    document.querySelectorAll(".lang-btn").forEach(btn => {
       btn.addEventListener("click", () => setLang(btn.dataset.lang));
     });
 
-    /* Countdown */
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    /* Reveal animation */
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      },
-      { threshold: 0.12 }
-    );
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+      });
+    }, { threshold: 0.12 });
 
     function observeReveals() {
-      document.querySelectorAll(".reveal:not(.visible)").forEach((el) => {
+      document.querySelectorAll(".reveal:not(.visible)").forEach(el => {
         revealObserver.observe(el);
       });
     }
 
-    /* Open invitation */
     openInviteBtn.addEventListener("click", () => {
       inviteOverlay.classList.add("hidden");
       document.body.classList.remove("locked");
       musicControl.hidden = false;
-
       loadMusic(currentMusicIndex, true);
+      setTimeout(() => { inviteOverlay.style.display = "none"; }, 900);
+    });
 
-      setTimeout(() => {
-        inviteOverlay.style.display = "none";
-      }, 900);
+    /* QR Code */
+    function renderQR() {
+      const container = document.getElementById("qrCode");
+      container.innerHTML = "";
+      const qrUrl = window.location.href;
+
+      try {
+        if (typeof QRCode !== "undefined") {
+          new QRCode(container, {
+            text: qrUrl,
+            width: 200,
+            height: 200,
+            colorDark: "#0e0c09",
+            colorLight: "#f8f3e8",
+            correctLevel: QRCode.CorrectLevel.H
+          });
+        }
+      } catch (err) {
+        // Fallback to API
+        const img = document.createElement("img");
+        img.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(qrUrl)}`;
+        img.alt = "QR Code";
+        container.appendChild(img);
+      }
+    }
+
+    document.getElementById("downloadQR").addEventListener("click", () => {
+      const canvas = document.querySelector("#qrCode canvas");
+      const img = document.querySelector("#qrCode img");
+
+      if (canvas) {
+        const link = document.createElement("a");
+        link.download = "invitation-qr.png";
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      } else if (img) {
+        const link = document.createElement("a");
+        link.download = "invitation-qr.png";
+        link.href = img.src;
+        link.target = "_blank";
+        link.click();
+      }
     });
 
     /* Music */
     function loadMusic(index, autoplay = false) {
       currentMusicIndex = index;
       const track = MUSIC[index];
-
       bgMusic.src = track.src;
       bgMusic.load();
       musicLabel.textContent = t(track.labelKey);
       musicStatus.textContent = "";
-
-      if (autoplay) {
-        playMusic();
-      }
-
+      if (autoplay) playMusic();
       updateMusicLabels();
     }
 
     function playMusic() {
-      bgMusic
-        .play()
-        .then(() => {
-          playPauseBtn.textContent = "⏸";
-          updateMusicLabels();
-        })
-        .catch(() => {
-          musicStatus.textContent = t("musicError");
-        });
+      bgMusic.play().then(() => {
+        playPauseBtn.textContent = "⏸";
+        updateMusicLabels();
+      }).catch(() => {
+        musicStatus.textContent = t("musicError");
+      });
     }
 
     function pauseMusic() {
@@ -1354,17 +1632,12 @@ Your presence will be one of the most precious gifts of our day.`,
     }
 
     playPauseBtn.addEventListener("click", () => {
-      if (bgMusic.paused) {
-        playMusic();
-      } else {
-        pauseMusic();
-      }
+      if (bgMusic.paused) playMusic();
+      else pauseMusic();
     });
 
-    document.querySelectorAll(".music-choice").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        loadMusic(Number(btn.dataset.musicIndex), true);
-      });
+    document.querySelectorAll(".music-choice").forEach(btn => {
+      btn.addEventListener("click", () => loadMusic(Number(btn.dataset.musicIndex), true));
     });
 
     bgMusic.addEventListener("error", () => {
@@ -1377,7 +1650,6 @@ Your presence will be one of the most precious gifts of our day.`,
 
     rsvpForm.addEventListener("submit", async (event) => {
       event.preventDefault();
-
       const nameInput = document.getElementById("guestName");
       const name = nameInput.value.trim();
       const attendance = rsvpForm.querySelector('input[name="attendance"]:checked');
@@ -1385,19 +1657,11 @@ Your presence will be one of the most precious gifts of our day.`,
 
       formMessage.textContent = "";
 
-      if (!name) {
-        formMessage.textContent = t("rsvpErrorName");
-        return;
-      }
-
-      if (!attendance) {
-        formMessage.textContent = t("rsvpErrorAttendance");
-        return;
-      }
+      if (!name) { formMessage.textContent = t("rsvpErrorName"); return; }
+      if (!attendance) { formMessage.textContent = t("rsvpErrorAttendance"); return; }
 
       const payload = {
-        name,
-        attendance: attendance.value,
+        name, attendance: attendance.value,
         weddingDate: WEDDING.dateISO,
         language: currentLang,
         submittedAt: new Date().toISOString()
@@ -1409,24 +1673,14 @@ Your presence will be one of the most precious gifts of our day.`,
         if (RSVP_ENDPOINT) {
           const response = await fetch(RSVP_ENDPOINT, {
             method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json"
-            },
+            headers: { "Content-Type": "application/json", Accept: "application/json" },
             body: JSON.stringify(payload)
           });
-
-          if (!response.ok) {
-            throw new Error("RSVP request failed");
-          }
+          if (!response.ok) throw new Error("RSVP request failed");
         }
 
-        const storageKey = `rsvp_${name.toLowerCase().replace(/\s+/g, "_")}`;
-        localStorage.setItem(storageKey, JSON.stringify(payload));
-
-        formMessage.textContent =
-          attendance.value === "yes" ? t("rsvpSuccessYes") : t("rsvpSuccessNo");
-
+        localStorage.setItem(`rsvp_${name.toLowerCase().replace(/\s+/g, "_")}`, JSON.stringify(payload));
+        formMessage.textContent = attendance.value === "yes" ? t("rsvpSuccessYes") : t("rsvpSuccessNo");
         rsvpForm.reset();
       } catch (err) {
         formMessage.textContent = t("rsvpErrorSubmit");
@@ -1437,6 +1691,7 @@ Your presence will be one of the most precious gifts of our day.`,
 
     /* Init */
     applyTranslations();
+    renderQR();
     loadMusic(0, false);
     observeReveals();
   </script>
