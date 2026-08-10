@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hy">
 <head>
@@ -165,10 +166,7 @@
 
     .hero-media { position: absolute; inset: 0; z-index: 0; }
 
-    .hero-media img {
-      width: 100%; height: 100%; object-fit: cover;
-      filter: saturate(0.85);
-    }
+    .hero-media img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.85); }
 
     .hero-overlay {
       position: absolute; inset: 0; z-index: 1;
@@ -192,10 +190,7 @@
     }
 
     .heart-divider::before,
-    .heart-divider::after {
-      content: ""; height: 1px; flex: 1;
-      background: rgba(255, 255, 255, 0.75);
-    }
+    .heart-divider::after { content: ""; height: 1px; flex: 1; background: rgba(255, 255, 255, 0.75); }
 
     .heart-divider svg { width: 26px; height: 24px; fill: #b9b3ae; }
 
@@ -206,10 +201,7 @@
       text-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
     }
 
-    .date-block {
-      display: flex; align-items: center; justify-content: center; gap: 22px;
-      color: #fff;
-    }
+    .date-block { display: flex; align-items: center; justify-content: center; gap: 22px; color: #fff; }
 
     .date-block .db-side {
       font-family: var(--font-serif);
@@ -264,10 +256,7 @@
     /* Calendar */
     .cal-wrap { max-width: 620px; margin: 0 auto; }
 
-    .cal-grid {
-      display: grid; grid-template-columns: repeat(7, 1fr);
-      gap: 6px; align-items: center;
-    }
+    .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; align-items: center; }
 
     .cal-dow {
       color: var(--muted); letter-spacing: 0.12em; font-size: 0.88rem;
@@ -280,28 +269,18 @@
       color: #6f6a64; font-size: 1.05rem;
     }
 
-    .cal-day.heart-day svg {
-      position: absolute; width: 46px; height: 42px; fill: #e6e1db;
-    }
-
-    .cal-day.heart-day span {
-      position: relative; color: var(--accent); font-weight: 700;
-    }
+    .cal-day.heart-day svg { position: absolute; width: 46px; height: 42px; fill: #e6e1db; }
+    .cal-day.heart-day span { position: relative; color: var(--accent); font-weight: 700; }
 
     .cal-caption {
       margin-top: 20px; text-align: center; color: var(--accent);
       font-family: var(--font-title); font-size: 1.6rem;
     }
 
-    /* Gallery (arch photos) */
-    .gallery-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 16px; margin-top: 30px;
-    }
+    /* Gallery */
+    .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 30px; }
 
-    @media (min-width: 760px) {
-      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
-    }
+    @media (min-width: 760px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
 
     .gallery-item {
       aspect-ratio: 3 / 4;
@@ -313,7 +292,6 @@
     }
 
     .gallery-item:hover { transform: scale(1.02); }
-
     .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
 
     .gallery-placeholder {
@@ -331,7 +309,6 @@
     }
 
     .lightbox.active { display: flex; }
-
     .lightbox img { max-width: 92vw; max-height: 88vh; object-fit: contain; border-radius: 14px; }
 
     .lightbox-close {
@@ -445,6 +422,13 @@
 
     .music-btn:hover { transform: scale(1.06); }
 
+    /* Hidden YouTube player */
+    .yt-hidden {
+      position: fixed; bottom: 0; left: 0;
+      width: 2px; height: 2px;
+      opacity: 0; pointer-events: none; overflow: hidden;
+    }
+
     /* Falling flowers */
     #flowers { position: fixed; inset: 0; pointer-events: none; z-index: 950; overflow: hidden; }
 
@@ -457,10 +441,7 @@
       will-change: transform;
     }
 
-    .flower i {
-      display: inline-block; font-style: normal;
-      animation: sway 2.8s ease-in-out infinite alternate;
-    }
+    .flower i { display: inline-block; font-style: normal; animation: sway 2.8s ease-in-out infinite alternate; }
 
     @keyframes fall { to { transform: translateY(118vh) rotate(var(--rot)); } }
 
@@ -649,11 +630,17 @@
     <button class="music-btn" id="playPauseBtn" type="button" aria-label="Play/Pause">▶</button>
   </div>
 
-  <audio id="bgMusic" loop preload="none"></audio>
+  <!-- Hidden YouTube player (song: Sona Rubenyan — Es qez het) -->
+  <div class="yt-hidden" aria-hidden="true">
+    <div id="ytPlayer"></div>
+  </div>
+
+  <!-- YouTube IFrame API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
 
   <script>
     /*******************************************************
-     * 1) ՓՈԵՔ ԱՅՍ ՏՎՅԱԼՆԵՐԸ (EDIT YOUR DATA HERE)
+     * 1) YOUR DATA
      ******************************************************/
     const WEDDING = {
       dateISO: "2026-10-25T14:00:00+04:00",
@@ -665,10 +652,10 @@
       }
     };
 
-    /* ՁԵ ՆԿԱՐՆԵՐԸ — դրեք ձեր ֆայլերի անունները images/ պանակում */
+    /* Your photos — put your file names in images/ folder */
     const PHOTOS = {
-      hero: "images/hero.jpg",           /* գլխավոր մեծ նկարը */
-      gallery: [                          /* պատկերասրահի նկարները */
+      hero: "images/hero.jpg",
+      gallery: [
         "images/gallery1.jpg",
         "images/gallery2.jpg",
         "images/gallery3.jpg",
@@ -678,10 +665,10 @@
       ]
     };
 
-    /* ԵԱԺՏՈՒԹՅՈՒՆ — դրեք ձեր MP3 ֆայլը audio/ պանակում այս անունով */
-    const MUSIC_SRC = "audio/es-qez-het.mp3"; /* Սոնա Ռուբենյան — Ես քեզ հետ */
+    /* YouTube song: Sona Rubenyan — Es qez het */
+    const YOUTUBE_ID = "8kfKmu4AHwY";
 
-    const RSVP_ENDPOINT = ""; // Formspree / Google Apps Script (optional)
+    const RSVP_ENDPOINT = "";
 
     const EVENTS = [
       { time: "11:00", icon: "🏡", titleKey: "groomHouse", venueKey: "groomHouseVenue", addressKey: "groomHouseAddress", mapKey: "groomHouse" },
@@ -697,7 +684,7 @@
     };
 
     /*******************************************************
-     * 2) ԹԱՐՄԱՆՈՒԹՈՒՆՆԵ
+     * 2) TRANSLATIONS
      ******************************************************/
     const I18N = {
       hy: {
@@ -726,7 +713,7 @@
         openMap: "Բացել քարտեզում",
 
         dressCodeTitle: "Dress Code / Գույների գամմա",
-        dressCodeText: "Մեզ համար կարևոր է, որ այս օրը ինի ներդաշնակ։ Ստորև նշված գույները կօգնեն Ձեզ ընտրել համապատասխան հագուստ։",
+        dressCodeText: "Մեզ համար կարևոր է, որ այս օրը լինի ներդաշնակ։ Ստորև նշված գույները կօգնեն Ձեզ ընտրել համապատասխան հագուստ։",
         colorIvory: "Փղոսկր", colorChampagne: "Շամպայն", colorGold: "Ոսկեգույն", colorSage: "Կանաչավուն", colorDustyBlue: "Մոխրակապույտ",
 
         rsvpTitle: "RSVP / Ներկայության հաստատում",
@@ -740,7 +727,7 @@
         rsvpErrorSubmit: "Սխալ տեղի ունեցավ։ Խնդրում ենք կրկին փորձել։",
 
         musicSong: "Սոնա Ռուբենյան — Ես քեզ հետ",
-        musicError: "Ավելացրեք MP3 ֆայլը՝ audio/es-qez-het.mp3",
+        musicError: "Երաժշտությունը հասանելի չէ։ Ստուգեք ինտերնետ կապը։",
 
         madeWithLove: "Սիրով՝ Արման & Անի"
       },
@@ -785,7 +772,7 @@
         rsvpErrorSubmit: "Произошла ошибка. Пожалуйста, попробуйте еще раз.",
 
         musicSong: "Сона Рубенян — Ес кез гет",
-        musicError: "Добавьте MP3-файл: audio/es-qez-het.mp3",
+        musicError: "Музыка недоступна. Проверьте подключение к интернету.",
 
         madeWithLove: "С любовью, Арман и Ани"
       },
@@ -830,7 +817,7 @@ With great joy and pride we announce that our paths are joining — a new chapte
         rsvpErrorSubmit: "An error occurred. Please try again.",
 
         musicSong: "Sona Rubenyan — Es qez het",
-        musicError: "Add the MP3 file: es-qez-het.mp3",
+        musicError: "Music unavailable. Check your internet connection.",
 
         madeWithLove: "With love, Arman & Ani"
       }
@@ -847,7 +834,6 @@ With great joy and pride we announce that our paths are joining — a new chapte
     const inviteOverlay = document.getElementById("inviteOverlay");
     const openInviteBtn = document.getElementById("openInviteBtn");
     const musicControl = document.getElementById("musicControl");
-    const bgMusic = document.getElementById("bgMusic");
     const playPauseBtn = document.getElementById("playPauseBtn");
     const musicSongLabel = document.getElementById("musicSongLabel");
     const flowersBox = document.getElementById("flowers");
@@ -855,7 +841,6 @@ With great joy and pride we announce that our paths are joining — a new chapte
     function t(key) { return I18N[currentLang]?.[key] ?? I18N.hy[key] ?? key; }
     function pad(n) { return String(n).padStart(2, "0"); }
     function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
-
     function locale() { return { hy: "hy-AM", ru: "ru-RU", en: "en-GB" }[currentLang] || "en-GB"; }
 
     function formatDateLong() {
@@ -882,9 +867,7 @@ With great joy and pride we announce that our paths are joining — a new chapte
     /* Hero date block */
     function renderDateBlock() {
       let m = "OCT";
-      try {
-        m = new Intl.DateTimeFormat(locale(), { month: "short" }).format(weddingDate);
-      } catch (e) {}
+      try { m = new Intl.DateTimeFormat(locale(), { month: "short" }).format(weddingDate); } catch (e) {}
       document.getElementById("dbMonth").textContent = m.toUpperCase();
       document.getElementById("dbDay").textContent = weddingDate.getDate();
       document.getElementById("dbYear").textContent = weddingDate.getFullYear();
@@ -895,25 +878,21 @@ With great joy and pride we announce that our paths are joining — a new chapte
       const y = weddingDate.getFullYear(), m = weddingDate.getMonth(), day = weddingDate.getDate();
 
       let monthName = "Հոկտեմբեր";
-      try {
-        monthName = cap(new Intl.DateTimeFormat(locale(), { month: "long" }).format(weddingDate));
-      } catch (e) {}
+      try { monthName = cap(new Intl.DateTimeFormat(locale(), { month: "long" }).format(weddingDate)); } catch (e) {}
       document.getElementById("calMonthTitle").textContent = monthName + " " + y;
 
       const heartSVG = '<svg viewBox="0 0 32 29" aria-hidden="true"><path d="M23.6 0c-3.2 0-6 1.7-7.6 4.2C14.4 1.7 11.6 0 8.4 0 3.8 0 0 3.8 0 8.4c0 9.4 16 20.2 16 20.2s16-10.8 16-20.2C32 3.8 28.2 0 23.6 0z"/></svg>';
 
       let html = WEEKDAYS[currentLang].map(d => `<div class="cal-dow">${d}</div>`).join("");
 
-      const start = (new Date(y, m, 1).getDay() + 6) % 7; // Monday first
+      const start = (new Date(y, m, 1).getDay() + 6) % 7;
       for (let i = 0; i < start; i++) html += `<div class="cal-day"></div>`;
 
       const daysInMonth = new Date(y, m + 1, 0).getDate();
       for (let d = 1; d <= daysInMonth; d++) {
-        if (d === day) {
-          html += `<div class="cal-day heart-day">${heartSVG}<span>${d}</span></div>`;
-        } else {
-          html += `<div class="cal-day">${d}</div>`;
-        }
+        html += (d === day)
+          ? `<div class="cal-day heart-day">${heartSVG}<span>${d}</span></div>`
+          : `<div class="cal-day">${d}</div>`;
       }
 
       document.getElementById("calGrid").innerHTML = html;
@@ -922,7 +901,7 @@ With great joy and pride we announce that our paths are joining — a new chapte
     /* Gallery */
     function renderGallery() {
       const grid = document.getElementById("galleryGrid");
-      grid.innerHTML = PHOTOS.gallery.map((src, i) => `
+      grid.innerHTML = PHOTOS.gallery.map(src => `
         <div class="gallery-item" data-img="${src}">
           <img src="${src}" alt="" loading="lazy"
                onerror="this.outerHTML='<div class=\\'gallery-placeholder\\'>♥</div>';" />
@@ -983,18 +962,53 @@ With great joy and pride we announce that our paths are joining — a new chapte
       setInterval(() => spawnFlower(false), 550);
     }
 
-    /* Music */
-    bgMusic.src = MUSIC_SRC;
-    bgMusic.addEventListener("error", () => { musicSongLabel.textContent = t("musicError"); });
+    /*******************************************************
+     * MUSIC — YouTube (Sona Rubenyan — Es qez het)
+     ******************************************************/
+    let ytPlayer = null;
+    let ytReady = false;
+    let wantPlay = false;
+
+    window.onYouTubeIframeAPIReady = function () {
+      ytPlayer = new YT.Player("ytPlayer", {
+        width: "2",
+        height: "2",
+        videoId: YOUTUBE_ID,
+        playerVars: { autoplay: 0, controls: 0, rel: 0, playsinline: 1 },
+        events: {
+          onReady: () => {
+            ytReady = true;
+            if (wantPlay) ytPlayer.playVideo();
+          },
+          onStateChange: (e) => {
+            if (e.data === YT.PlayerState.ENDED) { e.target.seekTo(0); e.target.playVideo(); }  /* loop */
+            if (e.data === YT.PlayerState.PLAYING) playPauseBtn.textContent = "❚❚";
+            if (e.data === YT.PlayerState.PAUSED) playPauseBtn.textContent = "▶";
+          },
+          onError: () => { musicSongLabel.textContent = t("musicError"); }
+        }
+      });
+    };
 
     function playMusic() {
-      bgMusic.play().then(() => { playPauseBtn.textContent = "❚❚"; })
-        .catch(() => { musicSongLabel.textContent = t("musicError"); });
+      wantPlay = true;
+      if (ytReady && ytPlayer) {
+        ytPlayer.playVideo();
+      } else {
+        setTimeout(() => { if (wantPlay && !ytReady) musicSongLabel.textContent = t("musicError"); }, 4000);
+      }
     }
 
-    function pauseMusic() { bgMusic.pause(); playPauseBtn.textContent = "▶"; }
+    function pauseMusic() {
+      wantPlay = false;
+      if (ytReady && ytPlayer) ytPlayer.pauseVideo();
+    }
 
-    playPauseBtn.addEventListener("click", () => { bgMusic.paused ? playMusic() : pauseMusic(); });
+    playPauseBtn.addEventListener("click", () => {
+      if (!ytReady) { musicSongLabel.textContent = t("musicError"); return; }
+      const state = ytPlayer.getPlayerState();
+      (state === YT.PlayerState.PLAYING) ? pauseMusic() : playMusic();
+    });
 
     /* Translations */
     function applyTranslations() {
@@ -1044,8 +1058,8 @@ With great joy and pride we announce that our paths are joining — a new chapte
       inviteOverlay.classList.add("hidden");
       document.body.classList.remove("locked");
       musicControl.hidden = false;
-      startFlowers();   /* 🌸 golden glitter begin falling */
-      playMusic();      /* 🎵 Sona Rubenyan — Es qez het */
+      startFlowers();  /* 🌸 white flowers fall */
+      playMusic();     /* 🎵 Sona Rubenyan — Es qez het */
       setTimeout(() => { inviteOverlay.style.display = "none"; }, 900);
     });
 
@@ -1096,4 +1110,3 @@ With great joy and pride we announce that our paths are joining — a new chapte
   </script>
 </body>
 </html>
-
