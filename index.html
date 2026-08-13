@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title> Նորայր & Զեմֆիրա | Հարսանիք | 25.10.2026</title>
-  <meta name="description" content="Հարսանյաց հրավիրատոմս՝  Նորայր & Զեմֆիրա | 25.10.2026" />
+  <title>Նորայր &amp; Զեմֆիրա | Հարսանիք | 25.10.2026</title>
+  <meta name="description" content="Հարսանյաց հրավիրատոմս՝ Նորայր & Զեմֆիրա | 25.10.2026" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -336,19 +336,6 @@
       background: var(--accent); box-shadow: 0 0 0 5px var(--accent-soft);
     }
 
-    .timeline-img {
-      height: 250px;
-      max-width: 360px;
-      margin: 4px auto 18px;
-      border-radius: 999px 999px 18px 18px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      background: #eceae6;
-      box-shadow: var(--shadow);
-    }
-
-    .timeline-img img { width: 100%; height: 100%; object-fit: cover; }
-
     .timeline-top { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 8px; }
     .timeline-time { color: var(--accent); font-size: 1.1rem; font-weight: 700; letter-spacing: 0.08em; }
     .timeline-icon { font-size: 1.4rem; }
@@ -438,27 +425,6 @@
       opacity: 0; pointer-events: none; overflow: hidden;
     }
 
-    /* Falling light hearts */
-    #flowers { position: fixed; inset: 0; pointer-events: none; z-index: 950; overflow: hidden; }
-
-    .flower {
-      position: fixed; top: -8vh;
-      color: #f4c6ce; /* light pink heart */
-      text-shadow: 0 1px 3px rgba(124, 43, 58, 0.18);
-      animation: fall linear forwards;
-      opacity: 0.9;
-      will-change: transform;
-    }
-
-    .flower i { display: inline-block; font-style: normal; animation: sway 2.8s ease-in-out infinite alternate; }
-
-    @keyframes fall { to { transform: translateY(118vh) rotate(var(--rot)); } }
-
-    @keyframes sway {
-      from { transform: translateX(calc(var(--sway) * -1)) rotate(-16deg); }
-      to { transform: translateX(var(--sway)) rotate(16deg); }
-    }
-
     footer { padding: 40px 0 120px; text-align: center; color: var(--muted); }
 
     .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.8s ease, transform 0.8s ease; }
@@ -471,7 +437,6 @@
       .lang-switcher { top: 12px; right: 12px; }
       .date-block { gap: 12px; }
       .date-block .db-side { padding: 10px 14px; }
-      .timeline-img { height: 210px; }
     }
   </style>
 </head>
@@ -490,14 +455,11 @@
     <div class="overlay-card">
       <p class="pretitle" data-i18n="weddingInvitation">Հարսանյաց հրավիրատոմս</p>
       <div class="overlay-line"></div>
-      <h2 class="names" data-i18n="coupleNames"> Նորայր & Զեմֆիրա </h2>
+      <h2 class="names" data-i18n="coupleNames">Նորայր &amp; Զեմֆիրա</h2>
       <p class="date" data-wedding-date>25.10.2026</p>
       <button class="btn" id="openInviteBtn" type="button" data-i18n="openInvitation">Բացել հրավիրատոմսը</button>
     </div>
   </div>
-
-  <!-- Falling light hearts -->
-  <div id="flowers" aria-hidden="true"></div>
 
   <main>
     <!-- Hero -->
@@ -508,7 +470,7 @@
       <div class="hero-overlay"></div>
 
       <div class="hero-content container">
-        <h1 data-i18n="coupleNames"> Նորայր & Զեմֆիրա </h1>
+        <h1 data-i18n="coupleNames">Նորայր &amp; Զեմֆիրա</h1>
 
         <div class="heart-divider" aria-hidden="true">
           <svg viewBox="0 0 32 29"><path d="M23.6 0c-3.2 0-6 1.7-7.6 4.2C14.4 1.7 11.6 0 8.4 0 3.8 0 0 3.8 0 8.4c0 9.4 16 20.2 16 20.2s16-10.8 16-20.2C32 3.8 28.2 0 23.6 0z"/></svg>
@@ -608,7 +570,7 @@
             <div>
               <label class="form-label" for="guestName" data-i18n="nameLabel">Անուն Ազգանուն</label>
               <input class="input" id="guestName" name="name" type="text" autocomplete="name"
-                data-i18n-placeholder="namePlaceholder" placeholder="Օրինակ՝ Մարիամ Հակոբյան" />
+                data-i18n-placeholder="namePlaceholder" placeholder="Օրինակ՝ արիամ Հակոբյան" />
             </div>
 
             <div class="radio-group" role="radiogroup" aria-label="Attendance">
@@ -630,7 +592,7 @@
     </section>
 
     <footer>
-      <div class="container" data-i18n="madeWithLove">Սիրով՝ Արման & Անի</div>
+      <div class="container" data-i18n="madeWithLove">Սիրով՝ Նորայր &amp; Զեմֆիրա</div>
     </footer>
   </main>
 
@@ -664,14 +626,14 @@
 
     /* Your photos for hero + gallery */
     const PHOTOS = {
-      hero: "IMG_0260.PNG",
+      hero: "IMG_0259.PNG",
       gallery: [
         "IMG_0258.PNG",
-        "IMG_0266.PNG",
-        "IMG_0257.PNG",
-        "IMG_0261.PNG",
+        "IMG_0260.PNG",
+        "IMG_0265.PNG",
         "IMG_0263.PNG",
-        "IMG_0265.PNG"
+        "IMG_0261.PNG",
+        "IMG_0257.PNG"
       ]
     };
 
@@ -679,33 +641,27 @@
 
     const RSVP_ENDPOINT = "";
 
-    /* Timeline: 5 stops with pictures
-       14:00 Wedding Ceremony @ Noravank | 16:30 Civil Ceremony (your venue photo) */
+    /* Timeline: 5 stops */
     const EVENTS = [
       {
         time: "11:00", icon: "🏡",
-        titleKey: "groomHouse", venueKey: "groomHouseVenue", addressKey: "groomHouseAddress", mapKey: "groomHouse",
-        image: "https://image.qwenlm.ai/public_source/cc6b1049-06aa-4b6b-a655-f5acd984d3ad/02ceefd3a-b83c-4866-b79b-2b40aa3ef0d51993.png"
+        titleKey: "groomHouse", venueKey: "groomHouseVenue", addressKey: "groomHouseAddress", mapKey: "groomHouse"
       },
       {
         time: "12:30", icon: "💐",
-        titleKey: "brideHouse", venueKey: "brideHouseVenue", addressKey: "brideHouseAddress", mapKey: "brideHouse",
-        image: "https://image.qwenlm.ai/public_source/cc6b1049-06aa-4b6b-a655-f5acd984d3ad/52ceefd3a-b83c-4866-b79b-2b40aa3ef0d55318.png"
+        titleKey: "brideHouse", venueKey: "brideHouseVenue", addressKey: "brideHouseAddress", mapKey: "brideHouse"
       },
       {
         time: "14:00", icon: "💍",
-        titleKey: "ceremony", venueKey: "ceremonyVenue", addressKey: "ceremonyAddress", mapKey: "church",
-        image: "https://image.qwenlm.ai/public_source/cc6b1049-06aa-4b6b-a655-f5acd984d3ad/62ceefd3a-b83c-4866-b79b-2b40aa3ef0d55836.png"
+        titleKey: "ceremony", venueKey: "ceremonyVenue", addressKey: "ceremonyAddress", mapKey: "church"
       },
       {
         time: "16:30", icon: "📜",
-        titleKey: "civilCeremony", venueKey: "civilVenue", addressKey: "civilAddress", mapKey: "civil",
-        image: "https://image.qwenlm.ai/public_source/cc6b1049-06aa-4b6b-a655-f5acd984d3ad/1591005c2-8e4b-4324-905f-c6b9809291f2.png"
+        titleKey: "civilCeremony", venueKey: "civilVenue", addressKey: "civilAddress", mapKey: "civil"
       },
       {
         time: "18:00", icon: "🥂",
-        titleKey: "reception", venueKey: "receptionVenue", addressKey: "receptionAddress", mapKey: "restaurant",
-        image: "https://image.qwenlm.ai/public_source/cc6b1049-06aa-4b6b-a655-f5acd984d3ad/62ceefd3a-b83c-4866-b79b-2b40aa3ef0d55390.png"
+        titleKey: "reception", venueKey: "receptionVenue", addressKey: "receptionAddress", mapKey: "restaurant"
       }
     ];
 
@@ -720,14 +676,13 @@
      ******************************************************/
     const I18N = {
       hy: {
-        pageTitle: "Նորայր & Զեմֆիրա" | Հարսանիք | 25.10.2026",
+        pageTitle: "Նորայր & Զեմֆիրա | Հարսանիք | 25.10.2026",
         weddingInvitation: "Հարսանյաց հրավիրատոմս",
         coupleNames: "Նորայր & Զեմֆիրա",
         openInvitation: "Բացել հրավիրատոմսը",
 
         welcomeTitle: "Սիրելի՛ հարազատներ",
-        welcomeText: `Սիրով հրավիրում ենք Ձեզ մեզ հետ միասին տոնելու մեր կյանքի ամենակարևոր ու գեղեցիկ օրը։
-Մենք մեծ ուրախությամբ և հպարտությամբ հայտարարում ենք, որ մեր կյանքի ճանապարհը միանում է՝ սկսելով մի նոր բաժին՝ միասին։`,
+        welcomeText: "Սիրով հրավիրում ենք Ձեզ մեզ հետ միասին տոնելու մեր կյանքի ամենակարևոր ու գեղեցիկ օրը։\nՄենք մեծ որախությամբ և հպարտությամբ հայտարարում ենք, որ մեր կյանքի ճանապարհը միանում է՝ սկսելով մի նոր բաժին՝ միասին։",
 
         countdownTitle: "Միջոցառմանը մնաց",
         days: "Օր", hours: "Ժամ", minutes: "Րոպե", seconds: "Վայրկյան",
@@ -772,18 +727,17 @@
         musicSong: "Սոնա Ռուբենյան — Ես քեզ հետ",
         musicError: "Երաժշտությունը հասանելի չէ։ Ստուգեք ինտերնետ կապը։",
 
-        madeWithLove: "Սիրով՝ "Նորայր & Զեմֆիրա"
+        madeWithLove: "Սիրով՝ Նորայր & Զեմֆիրա"
       },
 
       ru: {
-        pageTitle: "Арман & Ани | Свадьба | 25.10.2026",
+        pageTitle: "Норайр & Земфира | Свадьба | 25.10.2026",
         weddingInvitation: "Свадебное приглашение",
-        coupleNames: "Арман & Ани",
+        coupleNames: "Норайр & Земфира",
         openInvitation: "Открыть приглашение",
 
         welcomeTitle: "Дорогие близкие",
-        welcomeText: `С любовью приглашаем вас отпраздновать вместе с нами самый важный и красивый день нашей жизни.
-Мы с большой радостью и гордостью объявляем, что наши дороги соединяются — начинается новая глава, вместе.`,
+        welcomeText: "С любовью приглашаем вас отпраздновать вместе с нами самый важный и красивый день нашей жизни.\nМы с большой радостью и гордостью объявляем, что наши дороги соединяются — начинается новая глава, вместе.",
 
         countdownTitle: "До события осталось",
         days: "Дни", hours: "Часы", minutes: "Минуты", seconds: "Секунды",
@@ -828,18 +782,17 @@
         musicSong: "Сона Рубенян — Ес кез гет",
         musicError: "Музыка недоступна. Проверьте подключение к интернету.",
 
-        madeWithLove: "С любовью, Арман и Ани"
+        madeWithLove: "С любовью, Норайр & Земфира"
       },
 
       en: {
-        pageTitle: "Arman & Ani | Wedding | 25.10.2026",
+        pageTitle: "Norayr & Zemfira | Wedding | 25.10.2026",
         weddingInvitation: "Wedding Invitation",
-        coupleNames: "Arman & Ani",
+        coupleNames: "Norayr & Zemfira",
         openInvitation: "Open Invitation",
 
         welcomeTitle: "Dear Loved Ones",
-        welcomeText: `We lovingly invite you to celebrate with us the most important and beautiful day of our lives.
-With great joy and pride we announce that our paths are joining — a new chapter begins, together.`,
+        welcomeText: "We lovingly invite you to celebrate with us the most important and beautiful day of our lives.\nWith great joy and pride we announce that our paths are joining — a new chapter begins, together.",
 
         countdownTitle: "Counting Down To Our Day",
         days: "Days", hours: "Hours", minutes: "Minutes", seconds: "Seconds",
@@ -884,7 +837,7 @@ With great joy and pride we announce that our paths are joining — a new chapte
         musicSong: "Sona Rubenyan — Es qez het",
         musicError: "Music unavailable. Check your internet connection.",
 
-        madeWithLove: "With love, Arman & Ani"
+        madeWithLove: "With love, Norayr & Zemfira"
       }
     };
 
@@ -901,7 +854,6 @@ With great joy and pride we announce that our paths are joining — a new chapte
     const musicControl = document.getElementById("musicControl");
     const playPauseBtn = document.getElementById("playPauseBtn");
     const musicSongLabel = document.getElementById("musicSongLabel");
-    const flowersBox = document.getElementById("flowers");
 
     function t(key) { return I18N[currentLang]?.[key] ?? I18N.hy[key] ?? key; }
     function pad(n) { return String(n).padStart(2, "0"); }
@@ -940,21 +892,21 @@ With great joy and pride we announce that our paths are joining — a new chapte
       const y = weddingDate.getFullYear(), m = weddingDate.getMonth(), day = weddingDate.getDate();
 
       let monthName = "Հոկտեմբեր";
-      try { monthName = cap(new Intl.DateTimeFormat(locale(), { month: "long" }).format(weddingDate)); } catch (e) {}
+      try { monthName = cap(new Intl.DateTimeFormat(locale(), { month: "long" }).format(weddingDate); } catch (e) {}
       document.getElementById("calMonthTitle").textContent = monthName + " " + y;
 
       const heartSVG = '<svg viewBox="0 0 32 29" aria-hidden="true"><path d="M23.6 0c-3.2 0-6 1.7-7.6 4.2C14.4 1.7 11.6 0 8.4 0 3.8 0 0 3.8 0 8.4c0 9.4 16 20.2 16 20.2s16-10.8 16-20.2C32 3.8 28.2 0 23.6 0z"/></svg>';
 
-      let html = WEEKDAYS[currentLang].map(d => `<div class="cal-dow">${d}</div>`).join("");
+      let html = WEEKDAYS[currentLang].map(d => '<div class="cal-dow">' + d + '</div>').join("");
 
       const start = (new Date(y, m, 1).getDay() + 6) % 7;
-      for (let i = 0; i < start; i++) html += `<div class="cal-day"></div>`;
+      for (let i = 0; i < start; i++) html += '<div class="cal-day"></div>';
 
       const daysInMonth = new Date(y, m + 1, 0).getDate();
       for (let d = 1; d <= daysInMonth; d++) {
         html += (d === day)
-          ? `<div class="cal-day heart-day">${heartSVG}<span>${d}</span></div>`
-          : `<div class="cal-day">${d}</div>`;
+          ? '<div class="cal-day heart-day">' + heartSVG + '<span>' + d + '</span></div>'
+          : '<div class="cal-day">' + d + '</div>';
       }
 
       document.getElementById("calGrid").innerHTML = html;
@@ -962,12 +914,11 @@ With great joy and pride we announce that our paths are joining — a new chapte
 
     function renderGallery() {
       const grid = document.getElementById("galleryGrid");
-      grid.innerHTML = PHOTOS.gallery.map(src => `
-        <div class="gallery-item" data-img="${src}">
-          <img src="${src}" alt="" loading="lazy"
-               onerror="this.outerHTML='<div class=\\'gallery-placeholder\\'>♥</div>';" />
-        </div>
-      `).join("");
+      grid.innerHTML = PHOTOS.gallery.map(src =>
+        '<div class="gallery-item" data-img="' + src + '">' +
+          '<img src="' + src + '" alt="" loading="lazy" onerror="this.outerHTML=\'<div class=&quot;gallery-placeholder&quot;>✦</div>\';" />' +
+        '</div>'
+      ).join("");
 
       grid.querySelectorAll(".gallery-item").forEach(item => {
         item.addEventListener("click", () => {
@@ -981,47 +932,23 @@ With great joy and pride we announce that our paths are joining — a new chapte
     document.getElementById("lightboxClose").addEventListener("click", closeLightbox);
     document.getElementById("lightbox").addEventListener("click", e => { if (e.target.id === "lightbox") closeLightbox(); });
 
-    /* Timeline with pictures */
+    /* Timeline */
     function renderTimeline() {
-      document.getElementById("timeline").innerHTML = EVENTS.map(ev => `
-        <article class="timeline-item reveal">
-          ${ev.image ? `<div class="timeline-img"><img src="${ev.image}" alt="" loading="lazy" onerror="this.parentElement.style.display='none';" /></div>` : ""}
-          <div class="timeline-top">
-            <span class="timeline-time">${ev.time}</span>
-            <span class="timeline-icon">${ev.icon}</span>
-          </div>
-          <h3 class="timeline-title">${t(ev.titleKey)}</h3>
-          <p class="timeline-venue">${t(ev.venueKey)}</p>
-          <p class="timeline-address">${t(ev.addressKey)}</p>
-          <div class="map-actions">
-            <a class="btn small" href="${WEDDING.maps[ev.mapKey]}" target="_blank" rel="noopener noreferrer">📍 ${t("openMap")}</a>
-          </div>
-        </article>
-      `).join("");
+      document.getElementById("timeline").innerHTML = EVENTS.map(ev =>
+        '<article class="timeline-item reveal">' +
+          '<div class="timeline-top">' +
+            '<span class="timeline-time">' + ev.time + '</span>' +
+            '<span class="timeline-icon">' + ev.icon + '</span>' +
+          '</div>' +
+          '<h3 class="timeline-title">' + t(ev.titleKey) + '</h3>' +
+          '<p class="timeline-venue">' + t(ev.venueKey) + '</p>' +
+          '<p class="timeline-address">' + t(ev.addressKey) + '</p>' +
+          '<div class="map-actions">' +
+            '<a class="btn small" href="' + WEDDING.maps[ev.mapKey] + '" target="_blank" rel="noopener noreferrer">📍 ' + t("openMap") + '</a>' +
+          '</div>' +
+        '</article>'
+      ).join("");
       observeReveals();
-    }
-
-    /* Falling light hearts ♥ */
-    function spawnFlower(withDelay) {
-      if (flowersBox.childElementCount > 60) return;
-      const f = document.createElement("span");
-      f.className = "flower";
-      const dur = 7 + Math.random() * 6;
-      f.style.left = Math.random() * 100 + "vw";
-      f.style.fontSize = (12 + Math.random() * 16) + "px";
-      f.style.animationDuration = dur + "s";
-      f.style.setProperty("--sway", (10 + Math.random() * 28) + "px");
-      f.style.setProperty("--rot", Math.floor(Math.random() * 360) + "deg");
-      if (withDelay) f.style.animationDelay = (-Math.random() * dur) + "s";
-      f.innerHTML = "<i>♥</i>";
-      f.addEventListener("animationend", () => f.remove());
-      flowersBox.appendChild(f);
-    }
-
-    function startFlowers() {
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      for (let i = 0; i < 14; i++) spawnFlower(true);
-      setInterval(() => spawnFlower(false), 550);
     }
 
     /* MUSIC — YouTube */
@@ -1116,7 +1043,6 @@ With great joy and pride we announce that our paths are joining — a new chapte
       inviteOverlay.classList.add("hidden");
       document.body.classList.remove("locked");
       musicControl.hidden = false;
-      startFlowers();  /* 💗 light hearts fall */
       playMusic();
       setTimeout(() => { inviteOverlay.style.display = "none"; }, 900);
     });
