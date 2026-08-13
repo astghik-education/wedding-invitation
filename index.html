@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hy">
 <head>
@@ -455,7 +456,7 @@
     <div class="overlay-card">
       <p class="pretitle" data-i18n="weddingInvitation">Հարսանյաց հրավիրատոմս</p>
       <div class="overlay-line"></div>
-      <h2 class="names" data-i18n="coupleNames">Նորայր &amp; Զեմֆիրա</h2>
+      <h2 class="names" data-i18n="coupleNames">Նորայր &amp; Զեմիրա</h2>
       <p class="date" data-wedding-date>25.10.2026</p>
       <button class="btn" id="openInviteBtn" type="button" data-i18n="openInvitation">Բացել հրավիրատոմսը</button>
     </div>
@@ -570,7 +571,7 @@
             <div>
               <label class="form-label" for="guestName" data-i18n="nameLabel">Անուն Ազգանուն</label>
               <input class="input" id="guestName" name="name" type="text" autocomplete="name"
-                data-i18n-placeholder="namePlaceholder" placeholder="Օրինակ՝ արիամ Հակոբյան" />
+                data-i18n-placeholder="namePlaceholder" placeholder="Օրինակ՝ Մարիամ Հակոբյան" />
             </div>
 
             <div class="radio-group" role="radiogroup" aria-label="Attendance">
@@ -682,7 +683,7 @@
         openInvitation: "Բացել հրավիրատոմսը",
 
         welcomeTitle: "Սիրելի՛ հարազատներ",
-        welcomeText: "Սիրով հրավիրում ենք Ձեզ մեզ հետ միասին տոնելու մեր կյանքի ամենակարևոր ու գեղեցիկ օրը։\nՄենք մեծ որախությամբ և հպարտությամբ հայտարարում ենք, որ մեր կյանքի ճանապարհը միանում է՝ սկսելով մի նոր բաժին՝ միասին։",
+        welcomeText: "Սիրով հրավիրում ենք Ձեզ մեզ հետ միասին տոնելու մեր կյանքի ամենակարևոր ու գեղեցիկ օրը։\nՄենք մեծ ուրախությամբ և հպարտությամբ հայտարարում ենք, որ մեր կյանքի ճանապարհը միանում է՝ սկսելով մի նոր բաժին՝ միասին։",
 
         countdownTitle: "Միջոցառմանը մնաց",
         days: "Օր", hours: "Ժամ", minutes: "Րոպե", seconds: "Վայրկյան",
@@ -892,12 +893,12 @@
       const y = weddingDate.getFullYear(), m = weddingDate.getMonth(), day = weddingDate.getDate();
 
       let monthName = "Հոկտեմբեր";
-      try { monthName = cap(new Intl.DateTimeFormat(locale(), { month: "long" }).format(weddingDate); } catch (e) {}
+      try { monthName = cap(new Intl.DateTimeFormat(locale(), { month: "long" }).format(weddingDate)); } catch (e) {}
       document.getElementById("calMonthTitle").textContent = monthName + " " + y;
 
       const heartSVG = '<svg viewBox="0 0 32 29" aria-hidden="true"><path d="M23.6 0c-3.2 0-6 1.7-7.6 4.2C14.4 1.7 11.6 0 8.4 0 3.8 0 0 3.8 0 8.4c0 9.4 16 20.2 16 20.2s16-10.8 16-20.2C32 3.8 28.2 0 23.6 0z"/></svg>';
 
-      let html = WEEKDAYS[currentLang].map(d => '<div class="cal-dow">' + d + '</div>').join("");
+      let html = WEEKDAYS[currentLang].map(function (d) { return '<div class="cal-dow">' + d + '</div>'; }).join("");
 
       const start = (new Date(y, m, 1).getDay() + 6) % 7;
       for (let i = 0; i < start; i++) html += '<div class="cal-day"></div>';
@@ -914,14 +915,14 @@
 
     function renderGallery() {
       const grid = document.getElementById("galleryGrid");
-      grid.innerHTML = PHOTOS.gallery.map(src =>
-        '<div class="gallery-item" data-img="' + src + '">' +
+      grid.innerHTML = PHOTOS.gallery.map(function (src) {
+        return '<div class="gallery-item" data-img="' + src + '">' +
           '<img src="' + src + '" alt="" loading="lazy" onerror="this.outerHTML=\'<div class=&quot;gallery-placeholder&quot;>✦</div>\';" />' +
-        '</div>'
-      ).join("");
+          '</div>';
+      }).join("");
 
-      grid.querySelectorAll(".gallery-item").forEach(item => {
-        item.addEventListener("click", () => {
+      grid.querySelectorAll(".gallery-item").forEach(function (item) {
+        item.addEventListener("click", function () {
           document.getElementById("lightboxImg").src = item.getAttribute("data-img");
           document.getElementById("lightbox").classList.add("active");
         });
@@ -930,12 +931,12 @@
 
     function closeLightbox() { document.getElementById("lightbox").classList.remove("active"); }
     document.getElementById("lightboxClose").addEventListener("click", closeLightbox);
-    document.getElementById("lightbox").addEventListener("click", e => { if (e.target.id === "lightbox") closeLightbox(); });
+    document.getElementById("lightbox").addEventListener("click", function (e) { if (e.target.id === "lightbox") closeLightbox(); });
 
     /* Timeline */
     function renderTimeline() {
-      document.getElementById("timeline").innerHTML = EVENTS.map(ev =>
-        '<article class="timeline-item reveal">' +
+      document.getElementById("timeline").innerHTML = EVENTS.map(function (ev) {
+        return '<article class="timeline-item reveal">' +
           '<div class="timeline-top">' +
             '<span class="timeline-time">' + ev.time + '</span>' +
             '<span class="timeline-icon">' + ev.icon + '</span>' +
@@ -946,8 +947,8 @@
           '<div class="map-actions">' +
             '<a class="btn small" href="' + WEDDING.maps[ev.mapKey] + '" target="_blank" rel="noopener noreferrer">📍 ' + t("openMap") + '</a>' +
           '</div>' +
-        '</article>'
-      ).join("");
+        '</article>';
+      }).join("");
       observeReveals();
     }
 
@@ -963,16 +964,16 @@
         videoId: YOUTUBE_ID,
         playerVars: { autoplay: 0, controls: 0, rel: 0, playsinline: 1 },
         events: {
-          onReady: () => {
+          onReady: function () {
             ytReady = true;
             if (wantPlay) ytPlayer.playVideo();
           },
-          onStateChange: (e) => {
+          onStateChange: function (e) {
             if (e.data === YT.PlayerState.ENDED) { e.target.seekTo(0); e.target.playVideo(); }
             if (e.data === YT.PlayerState.PLAYING) playPauseBtn.textContent = "❚❚";
             if (e.data === YT.PlayerState.PAUSED) playPauseBtn.textContent = "▶";
           },
-          onError: () => { musicSongLabel.textContent = t("musicError"); }
+          onError: function () { musicSongLabel.textContent = t("musicError"); }
         }
       });
     };
@@ -982,7 +983,7 @@
       if (ytReady && ytPlayer) {
         ytPlayer.playVideo();
       } else {
-        setTimeout(() => { if (wantPlay && !ytReady) musicSongLabel.textContent = t("musicError"); }, 4000);
+        setTimeout(function () { if (wantPlay && !ytReady) musicSongLabel.textContent = t("musicError"); }, 4000);
       }
     }
 
@@ -991,10 +992,10 @@
       if (ytReady && ytPlayer) ytPlayer.pauseVideo();
     }
 
-    playPauseBtn.addEventListener("click", () => {
+    playPauseBtn.addEventListener("click", function () {
       if (!ytReady) { musicSongLabel.textContent = t("musicError"); return; }
       const state = ytPlayer.getPlayerState();
-      (state === YT.PlayerState.PLAYING) ? pauseMusic() : playMusic();
+      if (state === YT.PlayerState.PLAYING) { pauseMusic(); } else { playMusic(); }
     });
 
     /* Translations */
@@ -1002,15 +1003,15 @@
       document.documentElement.lang = currentLang;
       document.title = t("pageTitle");
 
-      document.querySelectorAll("[data-i18n]").forEach(el => el.textContent = t(el.getAttribute("data-i18n")));
-      document.querySelectorAll("[data-i18n-placeholder]").forEach(el => el.placeholder = t(el.getAttribute("data-i18n-placeholder")));
-      document.querySelectorAll("[data-i18n-title]").forEach(el => {
+      document.querySelectorAll("[data-i18n]").forEach(function (el) { el.textContent = t(el.getAttribute("data-i18n")); });
+      document.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) { el.placeholder = t(el.getAttribute("data-i18n-placeholder")); });
+      document.querySelectorAll("[data-i18n-title]").forEach(function (el) {
         const v = t(el.getAttribute("data-i18n-title"));
         el.title = v; el.setAttribute("aria-label", v);
         if (el.classList.contains("swatch")) el.dataset.name = v;
       });
-      document.querySelectorAll("[data-wedding-date]").forEach(el => el.textContent = formatDateLong());
-      document.querySelectorAll(".lang-btn").forEach(b => b.classList.toggle("active", b.dataset.lang === currentLang));
+      document.querySelectorAll("[data-wedding-date]").forEach(function (el) { el.textContent = formatDateLong(); });
+      document.querySelectorAll(".lang-btn").forEach(function (b) { b.classList.toggle("active", b.dataset.lang === currentLang); });
 
       musicSongLabel.textContent = t("musicSong");
 
@@ -1026,32 +1027,32 @@
       applyTranslations();
     }
 
-    document.querySelectorAll(".lang-btn").forEach(b => b.addEventListener("click", () => setLang(b.dataset.lang)));
+    document.querySelectorAll(".lang-btn").forEach(function (b) { b.addEventListener("click", function () { setLang(b.dataset.lang); }); });
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    const revealObserver = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
+    const revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) e.target.classList.add("visible"); });
     }, { threshold: 0.12 });
 
     function observeReveals() {
-      document.querySelectorAll(".reveal:not(.visible)").forEach(el => revealObserver.observe(el));
+      document.querySelectorAll(".reveal:not(.visible)").forEach(function (el) { revealObserver.observe(el); });
     }
 
-    openInviteBtn.addEventListener("click", () => {
+    openInviteBtn.addEventListener("click", function () {
       inviteOverlay.classList.add("hidden");
       document.body.classList.remove("locked");
       musicControl.hidden = false;
       playMusic();
-      setTimeout(() => { inviteOverlay.style.display = "none"; }, 900);
+      setTimeout(function () { inviteOverlay.style.display = "none"; }, 900);
     });
 
     /* RSVP */
     const rsvpForm = document.getElementById("rsvpForm");
     const formMessage = document.getElementById("formMessage");
 
-    rsvpForm.addEventListener("submit", async (event) => {
+    rsvpForm.addEventListener("submit", async function (event) {
       event.preventDefault();
       const name = document.getElementById("guestName").value.trim();
       const attendance = rsvpForm.querySelector('input[name="attendance"]:checked');
@@ -1061,7 +1062,7 @@
       if (!name) { formMessage.textContent = t("rsvpErrorName"); return; }
       if (!attendance) { formMessage.textContent = t("rsvpErrorAttendance"); return; }
 
-      const payload = { name, attendance: attendance.value, weddingDate: WEDDING.dateISO, language: currentLang, submittedAt: new Date().toISOString() };
+      const payload = { name: name, attendance: attendance.value, weddingDate: WEDDING.dateISO, language: currentLang, submittedAt: new Date().toISOString() };
       submitBtn.disabled = true;
 
       try {
@@ -1086,7 +1087,7 @@
     /* Init */
     const heroImg = document.getElementById("heroImg");
     heroImg.src = PHOTOS.hero;
-    heroImg.onerror = () => { heroImg.style.display = "none"; };
+    heroImg.onerror = function () { heroImg.style.display = "none"; };
 
     applyTranslations();
     renderGallery();
